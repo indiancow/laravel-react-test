@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Skill;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -42,6 +43,24 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $skills = Skill::all();
+        foreach ($skills as $skill) {
+            $user->skills()->attach($skill->id, [
+                'level' => 1,
+                'experience' => 0,
+            ]);
+        }
+
+        // スキルの作成
+        // $skills = Skill::all();
+        // foreach ($skills as $skill) {
+        //     $user->skills()->create([
+        //         'skill_id' => $skill->id,
+        //         'level' => 1,
+        //         'experience' => 0,
+        //     ]);
+        // }
 
         event(new Registered($user));
 
