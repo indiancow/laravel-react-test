@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TagsSeeder::class);
         $this->call(LevelsSeeder::class);
         $this->call(BadgeSeeder::class);
+        $this->call(EvolutionSeeder::class);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
