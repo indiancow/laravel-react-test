@@ -23,6 +23,13 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'user_skills')
+            ->withPivot('level', 'experience')
+            ->withTimestamps();
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
