@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Inertia\Inertia;
 use App\Models\Issue;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IssueController extends Controller
 {
@@ -12,7 +14,19 @@ class IssueController extends Controller
      */
     public function index()
     {
-        //
+        $issues = Issue::with(['user', 'tag'])->get()->map(function ($issue) {
+            return [
+                'id' => $issue->id,
+                'tag' => $issue->tag->name,
+                'author' => $issue->user->name,
+                'description' => $issue->description,
+                'createdAt' => $issue->created_at->format('Y-m-d H:i:s'),
+            ];
+        });
+
+        // $issues = Issue::all();
+        // dd($issues);
+        return Inertia::render('Issues/Index', ['issues' => $issues]);
     }
 
     /**
@@ -20,7 +34,8 @@ class IssueController extends Controller
      */
     public function create()
     {
-        //
+        // dd('3333');
+        return Inertia::render('Issues/Create');
     }
 
     /**
@@ -28,20 +43,23 @@ class IssueController extends Controller
      */
     public function store(Request $request)
     {
+        // dd('ddd');
         $validated = $request->validate([
-            'user_id' => 'required|exists:users,id',
+            // 'user_id' => 'required|exists:users,id',
             'tag_id' => 'required|exists:tags,id',
             'description' => 'required|string',
             // 他のバリデーションルールもここに追加できます。
         ]);
+
+        // dd($validated);
     
         $issue = new Issue;
-        $issue->user_id = $validated['user_id'];
+        $issue->user_id = Auth::user()->id;
         $issue->tag_id = $validated['tag_id'];
         $issue->description = $validated['description']; // もしissuesテーブルにtag_idが存在する場合
         $issue->save();
 
-        return redirect()->route('issues.index')->with('success', 'Issue created successfully');
+        return redirect()->route('issues.index');
     }
 
     /**
