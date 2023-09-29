@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Models\Issue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Events\IssueCreated;
 
 class IssueController extends Controller
 {
@@ -58,6 +59,8 @@ class IssueController extends Controller
         $issue->tag_id = $validated['tag_id'];
         $issue->description = $validated['description']; // もしissuesテーブルにtag_idが存在する場合
         $issue->save();
+
+        event(new IssueCreated($issue->user_id, $issue->id, $issue->tag_id));
 
         return redirect()->route('issues.index');
     }

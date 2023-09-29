@@ -18,4 +18,9 @@ class Issue extends Model
     {
         return $this->belongsTo(Tag::class);
     }
+
+    public function skill()
+    {
+        return $this->belongsTo(Skill::class, 'skill_id');
+    }
 }
