@@ -19,3 +19,12 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+function App() {
+    return (
+        <Router>
+            <Route path="/create-issue" component={CreateIssue} />
+        </Router>
+    );
+}
+
+export default App;
