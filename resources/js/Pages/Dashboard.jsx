@@ -18,7 +18,7 @@ export default function Dashboard({ auth }) {
                 </div>
             </div>
             <div>
-                <Navbar /> {/* Navbarコンポーネントを配置 */}
+                <Navbar />
                 {/* 他のコンポーネントやコンテンツ */}
             </div>
         </AuthenticatedLayout>
