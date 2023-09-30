@@ -9,15 +9,15 @@ import Dashboard from '../Dashboard';
 function IssuesIndex({ issues }) {
     return (
         <div>
-            <h1>Issues</h1>
+            <h1>クエスト一覧</h1>
             <table>
                 <thead>
                     <tr>
-                        <th>Tag</th>
-                        <th>Author</th>
-                        <th>Description</th>
-                        <th>Created At</th>
-                        <th>Actions</th>
+                        <th>クエストジャンル</th>
+                        <th>作成者</th>
+                        <th>内容</th>
+                        <th>作成日</th>
+                        <th>協力お願いします！</th>
                     </tr>
                 </thead>
                 <tbody>

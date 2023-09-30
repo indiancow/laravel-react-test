@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Models\Issue;
+use App\Models\Tag;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Events\IssueCreated;
@@ -35,8 +37,11 @@ class IssueController extends Controller
      */
     public function create()
     {
-        // dd('3333');
-        return Inertia::render('Issues/Create');
+        $tags = Tag::all();
+        return Inertia::render('Issues/Create', [
+            'tags' => $tags,
+        ]);
+        // return Inertia::render('Issues/Create');
     }
 
     /**
