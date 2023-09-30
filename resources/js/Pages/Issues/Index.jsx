@@ -1,6 +1,11 @@
 import React from 'react';
 import { InertiaLink } from '@inertiajs/inertia-react';
 
+import Navbar from '../../components/Navbar'; 
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Dashboard from '../Dashboard';
+// import OtherComponent from '../OtherComponent';
+
 function IssuesIndex({ issues }) {
     return (
         <div>
@@ -30,8 +35,15 @@ function IssuesIndex({ issues }) {
                     ))}
                 </tbody>
             </table>
+            <div>
+                <Navbar /> {/* Navbarコンポーネントを配置 */}
+                <h1>Issues Index</h1>
+                {/* 他のコンポーネントやコンテンツ */}
+            </div>
         </div>
+        
     );
 }
+
 
 export default IssuesIndex;

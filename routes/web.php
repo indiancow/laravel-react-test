@@ -42,10 +42,6 @@ Route::resource('issues', IssueController::class);
 
 // feedbacks
 Route::get('/feedbacks/create/{issue}', [FeedbackController::class, 'create']);
-
-
-
-
 Route::resource('feedbacks', FeedbackController::class);
 
 require __DIR__.'/auth.php';
