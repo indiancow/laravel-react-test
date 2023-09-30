@@ -26,4 +26,10 @@ class Issue extends Model
     {
         return $this->belongsTo(Skill::class, 'skill_id');
     }
+
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+    
 }
