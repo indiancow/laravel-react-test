@@ -4,6 +4,8 @@ namespace App\Listeners;
 
 use App\Models\User_skill;
 use App\Events\FeedbackCreated;
+use App\Events\UserLevelUp;
+
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 
@@ -39,5 +41,6 @@ class AddExperienceForFeedback
         // 経験値の付与処理
         $experiencePoints = 15; // 例: 15ポイントを付与
         $userSkill->increment('experience', $experiencePoints);
+        event(new UserLevelUp($userSkill));
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Listeners;
 
 use App\Events\IssueCreated;
+use App\Events\UserLevelUp;
+
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Models\User_skill;
@@ -43,5 +45,7 @@ class AddExperienceForIssue
         // 実際の量や計算ロジックによって適切に変更してください。
         $experiencePoints = 10; // 例: 10ポイントを付与
         $userSkill->increment('experience', $experiencePoints);
+
+        event(new UserLevelUp($userSkill));
     }
 }
