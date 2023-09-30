@@ -5,8 +5,9 @@ namespace App\Providers;
 use App\Events\IssueCreated;
 use App\Listeners\AddExperienceForIssue;
 use App\Events\FeedbackCreated;
+use App\Events\UserLevelUp;
 use App\Listeners\AddExperienceForFeedback;
-
+use App\Listeners\UpdateUserLevel;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -33,6 +34,10 @@ class EventServiceProvider extends ServiceProvider
         FeedbackCreated::class => [
             AddExperienceForFeedback::class,
         ],
+
+        UserLevelUp::class => [
+            UpdateUserLevel::class,
+        ]
     ];
 
     /**
