@@ -17,8 +17,9 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        $feedbacks = Feedback::all();
-        return view('feedbacks.index', ['feedbacks' => $feedbacks]);
+        $feedbacks = Feedback::with('user', 'issue.user', 'issue.tag')->get();
+        // dd($feedbacks);
+        return Inertia::render('Feedbacks/Index', ['feedbacks' => $feedbacks]);
     }
 
     /**
