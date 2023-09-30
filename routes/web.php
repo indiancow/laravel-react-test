@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\IssueController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -38,5 +39,13 @@ Route::middleware('auth')->group(function () {
 
 // issue
 Route::resource('issues', IssueController::class);
+
+// feedbacks
+Route::get('/feedbacks/create/{issue}', [FeedbackController::class, 'create']);
+
+
+
+
+Route::resource('feedbacks', FeedbackController::class);
 
 require __DIR__.'/auth.php';
