@@ -8,7 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use App\Models\User_skill;
 use App\Models\Issue;
 
-class AddExperienceListener
+class AddExperienceForIssue
 {
     /**
      * Create the event listener.
