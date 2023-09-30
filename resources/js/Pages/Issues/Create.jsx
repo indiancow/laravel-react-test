@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Inertia } from '@inertiajs/inertia';
-import Navbar from '../../Components/Navbar'; // Navbarコンポーネントのインポート
+import Navbar from '../../Components/Navbar';
 
 function IssuesCreate(props) {
     const [description, setDescription] = useState('');
-    const [tagId, setTagId] = useState('');
-    const [tags, setTags] = useState([]); // タグのデータを管理するためのステート
-    
+    const [tagId, setTagId] = useState(''); // 初期値として空文字列を設定
+    const [tags, setTags] = useState([]);
+
     useEffect(() => {
-        if(props.tags) setTags(props.tags); // propsから受け取ったtagsをローカルステートにセット
+        if(props.tags && props.tags.length > 0) {
+            setTags(props.tags); // propsから受け取ったtagsをローカルステートにセット
+            setTagId(props.tags[0].id); // 最初のtag.idをセット
+        }
     }, [props.tags]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        // Inertiaを用いて、Laravelバックエンドへデータを送信
+        console.log('Submitted tagId:', tagId); // フォーム送信時にtagIdの値をログに出力
         Inertia.post('/issues', {
             description: description,
             tag_id: tagId,
@@ -23,9 +25,10 @@ function IssuesCreate(props) {
 
     return (
         <div>
-            <Navbar /> {/* Navbarコンポーネントを配置 */}
+            <Navbar />
+            <h1> クエスト作成</h1>
             <form onSubmit={handleSubmit}>
-            <label>
+                <label>
                     クエストジャンル:
                     <select value={tagId} onChange={(e) => setTagId(e.target.value)}>
                         {tags.map(tag => (

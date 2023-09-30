@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateFeedbackRequest;
 use App\Models\Feedback;
 use App\Models\Issue;
 use Inertia\Inertia;
+use App\Events\FeedbackCreated;
 
 use function Termwind\render;
 
@@ -44,11 +45,14 @@ class FeedbackController extends Controller
             'content' => 'required|string', // コンテンツは必須で、文字列であることを確認
         ]);
         
-        Feedback::create([
+        $feedback = Feedback::create([
             'user_id' => auth()->id(), // 認証済みユーザーのID
             'issue_id' => $validated['issue_id'],
             'content' => $validated['content'],
         ]);
+
+        # give experience
+        event(new FeedbackCreated($feedback));
 
         return redirect()->route('feedbacks.index')->with('success', 'Feedback has been added successfully!');
     }

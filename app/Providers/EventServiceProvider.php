@@ -3,7 +3,10 @@
 namespace App\Providers;
 
 use App\Events\IssueCreated;
-use App\Listeners\AddExperienceListener;
+use App\Listeners\AddExperienceForIssue;
+use App\Events\FeedbackCreated;
+use App\Listeners\AddExperienceForFeedback;
+
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -23,8 +26,13 @@ class EventServiceProvider extends ServiceProvider
 
         # make issues
         IssueCreated::class => [
-            AddExperienceListener::class
-        ]
+            AddExperienceForIssue::class
+        ],
+
+        # make feedback and give experience
+        FeedbackCreated::class => [
+            AddExperienceForFeedback::class,
+        ],
     ];
 
     /**

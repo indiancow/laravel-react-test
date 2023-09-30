@@ -49,7 +49,7 @@ class IssueController extends Controller
      */
     public function store(Request $request)
     {
-        // dd('ddd');
+        // dd($request);
         $validated = $request->validate([
             // 'user_id' => 'required|exists:users,id',
             'tag_id' => 'required|exists:tags,id',
@@ -64,7 +64,7 @@ class IssueController extends Controller
         $issue->tag_id = $validated['tag_id'];
         $issue->description = $validated['description']; // もしissuesテーブルにtag_idが存在する場合
         $issue->save();
-
+        // dd($issue);
         event(new IssueCreated($issue->user_id, $issue->id, $issue->tag_id));
 
         return redirect()->route('issues.index');
