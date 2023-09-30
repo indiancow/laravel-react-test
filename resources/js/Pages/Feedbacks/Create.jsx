@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Inertia } from '@inertiajs/inertia';
+import Navbar from '../../components/Navbar'; 
 
 function CreateFeedback({ issue }) {
     const [content, setContent] = useState('');
@@ -28,6 +29,10 @@ function CreateFeedback({ issue }) {
                 </div>
                 <button type="submit">Submit</button>
             </form>
+            <div>
+                <Navbar /> {/* Navbarコンポーネントを配置 */}
+                {/* 他のコンポーネントやコンテンツ */}
+            </div>
         </div>
     );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../../components/Navbar'; 
 
 function Feedbacks(props) {
     return (
@@ -24,6 +25,10 @@ function Feedbacks(props) {
                     ))}
                 </tbody>
             </table>
+            <div>
+                <Navbar /> {/* Navbarコンポーネントを配置 */}
+                {/* 他のコンポーネントやコンテンツ */}
+            </div>
         </div>
     );
 }
