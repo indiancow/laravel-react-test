@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar';
 function Feedbacks(props) {
     return (
         <div>
-            <h1>Feedback List</h1>
+            <h1>フィードバック一覧</h1>
             <table>
                 <thead>
                     <tr>
