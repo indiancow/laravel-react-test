@@ -5,7 +5,7 @@ import Navbar from '../../components/Navbar';
 const Show = ({ user, users, issues, feedbacks, userSkills }) => {
     return (
         <div>
-            <h1>{user.name}'s Mypage</h1>
+            <h1>{user.name}'s マイページ</h1>
             
             <div>
                 <h2>Other Users</h2>
@@ -34,7 +34,7 @@ const Show = ({ user, users, issues, feedbacks, userSkills }) => {
             </div>
             
             <div>
-                <h2>User Info</h2>
+                <h2>あなたのスキル</h2>
                 <div>
                     <table className="table">
                         <thead>
@@ -59,6 +59,7 @@ const Show = ({ user, users, issues, feedbacks, userSkills }) => {
                 </div>
                 <div>
                     {/* 他のコンポーネントや要素 */}
+                    <h2>あなたのこれまでの課題</h2>
                     <table className="table">
                         <thead>
                             <tr>
@@ -78,12 +79,33 @@ const Show = ({ user, users, issues, feedbacks, userSkills }) => {
                         </tbody>
                     </table>
                 </div>
-                <p>Received Feedback: {feedbacks.map(feedback => (
-                <div key={feedback.id}>
-                    {feedback.content}
-                    {/* 他のフィードバック情報も表示 */}
+                <div>
+                    <h2>あなたがもらったフィードバック</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>課題タグ</th>
+                            <th>コンテンツ</th>
+                            <th>フィードバック作成者</th>
+                            <th>作成日時</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {feedbacks.map((feedback) => (
+                            <tr key={feedback.id}>
+                            <td>{feedback.issue.tag.name}</td>
+                            <td>{feedback.content}</td>
+                            <td>
+                                <InertiaLink href={`/mypage/${feedback.user_id}`}>
+                                {users.find((u) => u.id === feedback.user_id).name}
+                                </InertiaLink>
+                            </td>
+                            <td>{new Date(feedback.created_at).toLocaleDateString()}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
                 </div>
-                ))}</p>
             </div>
             <div>
                 <Navbar /> {/* Navbarコンポーネントを配置 */}

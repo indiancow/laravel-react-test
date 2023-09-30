@@ -16,8 +16,8 @@ class MypageController extends Controller
         $user = $userId ? User::findOrFail($userId) : Auth::user();
         $userSkills = $user->userSkills()->with('skill')->get();
         $issues = $user->issues()->with(['tag', 'feedbacks'])->get();
-        // dd($issues);
         $feedbacksReceived = $user->feedbacksReceived()->with('issue.tag')->get();
+        // dd($feedbacksReceived);
         $users = User::all(); // 全ユーザーを取得
         
         return Inertia::render('Mypage/Show', [
