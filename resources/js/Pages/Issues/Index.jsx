@@ -37,7 +37,6 @@ function IssuesIndex({ issues }) {
             </table>
             <div>
                 <Navbar /> {/* Navbarコンポーネントを配置 */}
-                <h1>Issues Index</h1>
                 {/* 他のコンポーネントやコンテンツ */}
             </div>
         </div>

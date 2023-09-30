@@ -1,5 +1,6 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import Navbar from '../components/Navbar'; 
 
 export default function Dashboard({ auth }) {
     return (
@@ -16,6 +17,10 @@ export default function Dashboard({ auth }) {
                     </div>
                 </div>
             </div>
-</AuthenticatedLayout>
+            <div>
+                <Navbar /> {/* Navbarコンポーネントを配置 */}
+                {/* 他のコンポーネントやコンテンツ */}
+            </div>
+        </AuthenticatedLayout>
     );
 }
