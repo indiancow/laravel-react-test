@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\GymLeaderEvent;
 use App\Events\UserLevelUp;
 use App\Models\Level;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -35,5 +36,6 @@ class UpdateUserLevel
             $userSkill->experience = $currentExperience - $nextLevelInfo->experience_required;
             $userSkill->save();
         }
+        event(new GymLeaderEvent($userSkill));
     }
 }
