@@ -16,15 +16,15 @@ function IssuesIndex({ issues }) {
                 <h1 className="text-2xl font-bold mb-6">クエスト一覧</h1>
                 <div className=" gap-6 px-20">
                     {issues.data.map(issue => (
-                        <div key={issue.id} className="bg-white p-6 rounded-lg shadow-md px-70">
-                            <h2 className="text-xl font-semibold mb-2">{issue.tag}</h2>
+                        <div key={issue.id} className="bg-white p-6 rounded-lg shadow-xl px-70 m-8">
+                            <h2 className="text-xl font-semibold mb-2 index-title">{issue.tag}</h2>
                             <p className="text-sm mb-4">
-                                <span className="font-semibold">作成者:</span> {issue.author}
+                                <span className="font-semibold index-title">作成者:</span> {issue.author}
                             </p>
                             <p className="text-sm mb-4">
-                            <span className="font-semibold">内容:</span> {issue.description}</p>
+                            <span className="font-semibold index-title">内容:</span> {issue.description}</p>
                             <p className="text-sm mb-4">
-                                <span className="font-semibold">作成日:</span> {issue.createdAt}
+                                <span className="font-semibold index-title">作成日:</span> {issue.createdAt}
                             </p>
                             <InertiaLink 
                                 href={`/feedbacks/create/${issue.id}`}

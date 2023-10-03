@@ -24,27 +24,37 @@ function IssuesCreate(props) {
     };
 
     return (
-        <div>
+        <div className='back-color'>
             <Navbar />
-            <h1> クエスト作成</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    クエストジャンル:
-                    <select value={tagId} onChange={(e) => setTagId(e.target.value)}>
-                        {tags.map(tag => (
-                            <option key={tag.id} value={tag.id}>{tag.name}</option>
-                        ))}
-                    </select>
-                </label>
-                <label>
-                    クエスト内容:
-                    <textarea 
-                        value={description} 
-                        onChange={(e) => setDescription(e.target.value)} 
-                    />
-                </label>
-                <button type="submit">Submit</button>
-            </form>
+            <h1 className="text-2xl font-bold mb-6 text-center text-white">クエスト作成</h1>
+            <div className='flex justify-center'>
+                <form onSubmit={handleSubmit} className='issue-form'>
+                    <div className='flex justify-center'>
+                        <label>
+                            クエストジャンル:
+                            <select value={tagId} onChange={(e) => setTagId(e.target.value)}>
+                                {tags.map(tag => (
+                                    <option key={tag.id} value={tag.id}>{tag.name}</option>
+                                ))}
+                            </select>
+                        </label>
+                    </div>
+                    <div className='flex justify-center'>
+                        <label>
+                            クエスト内容:
+                            <textarea 
+                                value={description} 
+                                onChange={(e) => setDescription(e.target.value)} 
+                            />
+                        </label>
+                    </div>
+                    <div className='flex justify-center'>
+                        <button type="submit" >Submit</button>
+                    </div>
+                    
+                </form>
+            </div>
+            
         </div>
     );
 }
