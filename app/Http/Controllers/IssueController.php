@@ -17,7 +17,10 @@ class IssueController extends Controller
      */
     public function index()
     {
-        $issues = Issue::with(['user', 'tag'])->get()->map(function ($issue) {
+        $issues = Issue::with(['user', 'tag'])
+            ->paginate(10);
+            // dd(get_class($issues)); 
+        $issues->getCollection()->transform(function ($issue) {
             return [
                 'id' => $issue->id,
                 'tag' => $issue->tag->name,
@@ -26,6 +29,7 @@ class IssueController extends Controller
                 'createdAt' => $issue->created_at->format('Y-m-d H:i:s'),
             ];
         });
+
 
         // $issues = Issue::all();
         // dd($issues);
