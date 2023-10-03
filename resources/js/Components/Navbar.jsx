@@ -4,7 +4,7 @@ import { InertiaLink } from '@inertiajs/inertia-react';
 function Navbar() {
     return (
         <nav>
-            <ul className="flex space-x-4">
+            <ul className="flex space-x-4 justify-start mt-5 back-color">
                 <li className="text-white"><InertiaLink href="/dashboard" className="hover:underline">Home</InertiaLink></li>
                 <li className="text-white"><InertiaLink href="/issues/create" className="hover:underline">クエスト作成</InertiaLink></li>
                 <li className="text-white"><InertiaLink href="/issues" className="hover:underline">クエスト一覧</InertiaLink></li>

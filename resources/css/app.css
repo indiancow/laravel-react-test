@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap'); */
+
 .back-color{
     background: linear-gradient(98deg, #A13DE5 32.76%, #4E75B9 73.01%);
-};
+}
+
+.nav-bar{
+    
+}
+
+.dashboard-subtitle{
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

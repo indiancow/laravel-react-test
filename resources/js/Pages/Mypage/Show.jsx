@@ -5,6 +5,10 @@ import Navbar from '../../components/Navbar';
 const Show = ({ user, users, issues, feedbacks, userSkills }) => {
     return (
         <div>
+            <div>
+                <Navbar /> {/* Navbarコンポーネントを配置 */}
+                {/* 他のコンポーネントやコンテンツ */}
+            </div>
             <h1>{user.name}'s マイページ</h1>
             
             <div>
@@ -106,10 +110,6 @@ const Show = ({ user, users, issues, feedbacks, userSkills }) => {
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <div>
-                <Navbar /> {/* Navbarコンポーネントを配置 */}
-                {/* 他のコンポーネントやコンテンツ */}
             </div>
         </div>
     );

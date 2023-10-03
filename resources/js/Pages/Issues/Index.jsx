@@ -8,37 +8,32 @@ import Dashboard from '../Dashboard';
 
 function IssuesIndex({ issues }) {
     return (
-        <div>
-            <h1>クエスト一覧</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>クエストジャンル</th>
-                        <th>作成者</th>
-                        <th>内容</th>
-                        <th>作成日</th>
-                        <th>協力お願いします！</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {issues.map(issue => (
-                        <tr key={issue.id}>
-                            <td>{issue.tag}</td>
-                            <td>{issue.author}</td>
-                            <td>{issue.description}</td>
-                            <td>{issue.createdAt}</td>
-                            <td>
-                                {/* InertiaLinkを使用して、フィードバックページへのリンクを作成。idをパラメータとして渡す */}
-                                <InertiaLink href={`/feedbacks/create/${issue.id}`}>Add Feedback</InertiaLink>
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+        <div className=''>
             <div>
-                <Navbar /> {/* Navbarコンポーネントを配置 */}
-                {/* 他のコンポーネントやコンテンツ */}
+                <Navbar />
             </div>
+            <h1 className="text-2xl font-bold mb-6">クエスト一覧</h1>
+            <div className=" gap-6 px-20">
+                {issues.map(issue => (
+                    <div key={issue.id} className="bg-white p-6 rounded-lg shadow-md px-70">
+                        <h2 className="text-xl font-semibold mb-2">{issue.tag}</h2>
+                        <p className="text-sm mb-4">
+                            <span className="font-semibold">作成者:</span> {issue.author}
+                        </p>
+                        <p className="text-sm mb-4">{issue.description}</p>
+                        <p className="text-sm mb-4">
+                            <span className="font-semibold">作成日:</span> {issue.createdAt}
+                        </p>
+                        <InertiaLink 
+                            href={`/feedbacks/create/${issue.id}`}
+                            className="text-indigo-500 hover:text-indigo-700"
+                        >
+                            Add Feedback
+                        </InertiaLink>
+                    </div>
+                ))}
+            </div>
+            
         </div>
         
     );
