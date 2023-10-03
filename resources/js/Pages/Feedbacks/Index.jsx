@@ -4,6 +4,10 @@ import Navbar from '../../components/Navbar';
 function Feedbacks(props) {
     return (
         <div>
+            <div>
+                <Navbar /> {/* Navbarコンポーネントを配置 */}
+                {/* 他のコンポーネントやコンテンツ */}
+            </div>
             <h1>フィードバック一覧</h1>
             <table>
                 <thead>
@@ -25,10 +29,6 @@ function Feedbacks(props) {
                     ))}
                 </tbody>
             </table>
-            <div>
-                <Navbar /> {/* Navbarコンポーネントを配置 */}
-                {/* 他のコンポーネントやコンテンツ */}
-            </div>
         </div>
     );
 }

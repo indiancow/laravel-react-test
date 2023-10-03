@@ -1,6 +1,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import Navbar from '../components/Navbar'; 
+import '../../css/app.css';
 
 export default function Dashboard({ auth }) {
     return (
@@ -21,6 +22,14 @@ export default function Dashboard({ auth }) {
                             <div className="p-6 text-gray-900">You're logged in!</div>
                         </div>
                     </div>
+                </div>
+                <div className='dashboard-subtitle'>
+                    <h2 className='dashboard-subtitle'>
+                        チカラを合わせてセカイを救え！
+                    </h2>
+                </div>
+                <div className='flex items-center justify-center'>
+                    <img src="http://localhost/storage/20230831_feedo_logo_black@4x.png" className='w-1/2' alt="" />
                 </div>
                 
             {/* </AuthenticatedLayout> */}
