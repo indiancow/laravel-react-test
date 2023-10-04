@@ -2,6 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import Navbar from '../components/Navbar'; 
 import '../../css/app.css';
+import ApplicationLogo from '@/Components/ApplicationLogo';
 
 export default function Dashboard({ auth }) {
     return (
@@ -28,9 +29,7 @@ export default function Dashboard({ auth }) {
                         チカラを合わせてセカイを救え！
                     </h2>
                 </div>
-                <div className='flex items-center justify-center'>
-                    <img src="http://localhost/storage/20230831_feedo_logo_black@4x.png" className='w-1/2' alt="" />
-                </div>
+                <ApplicationLogo/>
                 
             {/* </AuthenticatedLayout> */}
         </div>
