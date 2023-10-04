@@ -17,14 +17,14 @@ function IssuesIndex({ issues }) {
                 <div className=" gap-6 px-20">
                     {issues.data.map(issue => (
                         <div key={issue.id} className="bg-white p-6 rounded-lg shadow-xl px-70 m-8">
-                            <h2 className="text-xl font-semibold mb-2 index-title">{issue.tag}</h2>
+                            <h2 className="text-2xl font-semibold mb-2 index-title">{issue.tag}</h2>
                             <p className="text-sm mb-4">
-                                <span className="font-semibold index-title">作成者:</span> {issue.author}
+                                <span className="font-semibold">作成者:</span> {issue.author}
                             </p>
                             <p className="text-sm mb-4">
-                            <span className="font-semibold index-title">内容:</span> {issue.description}</p>
+                            <span className="font-semibold">内容:</span> {issue.description}</p>
                             <p className="text-sm mb-4">
-                                <span className="font-semibold index-title">作成日:</span> {issue.createdAt}
+                                <span className="font-semibold">作成日:</span> {issue.createdAt}
                             </p>
                             <InertiaLink 
                                 href={`/feedbacks/create/${issue.id}`}
