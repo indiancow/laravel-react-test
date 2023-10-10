@@ -1,12 +1,13 @@
 import React from 'react';
 import { InertiaLink } from '@inertiajs/inertia-react';
 import Navbar from '../../components/Navbar'; 
+import UserSelector from '../../components/UserSelector'; 
 
 const Show = ({ user, users, issues, feedbacks, userSkills }) => {
     return (
         <div className='mypage-bgc mypage-text'>
             <div>
-                <Navbar /> {/* Navbarコンポーネントを配置 */}
+                <Navbar />{/* Navbarコンポーネントを配置 */}
                 {/* 他のコンポーネントやコンテンツ */}
             </div>
             <div>
@@ -14,7 +15,8 @@ const Show = ({ user, users, issues, feedbacks, userSkills }) => {
                     <div className='mypage-username-card w-1/2'>
                         <h1 className='mypage-username'>{user.name}'s マイページ</h1>
                     </div>
-                    <div>
+                    <UserSelector users={users} />
+                    {/* <div>
                         <h2>Other Users</h2>
                         <select onChange={(e) => {
                             const userId = e.target.value;
@@ -30,7 +32,7 @@ const Show = ({ user, users, issues, feedbacks, userSkills }) => {
                                 </option>
                             ))}
                         </select>
-                    </div>
+                    </div> */}
                 </div>
                 
                 <div>
