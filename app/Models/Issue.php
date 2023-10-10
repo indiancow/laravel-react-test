@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Issue extends Model
 {
@@ -32,4 +33,8 @@ class Issue extends Model
         return $this->hasMany(Feedback::class);
     }
     
+    public function getVideoUrlAttribute()
+    {
+        return Storage::disk('public')->url('videos/' . $this->id . '.mp4');
+    }
 }

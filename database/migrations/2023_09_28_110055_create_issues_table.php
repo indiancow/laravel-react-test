@@ -16,6 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('tag_id')->constrained()->onDelete('cascade');
             $table->text('description');
+            $table->string('video_path')->nullable(); // 動画ファイルパスを保存するカラムを追加
             $table->timestamps();
         });
     }

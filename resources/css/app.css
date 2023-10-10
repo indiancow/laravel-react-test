@@ -37,3 +37,10 @@
 .index-title{
     color:#A13DE5;
 }
+
+.mypage-bgc{
+    background: linear-gradient(114deg, #401144 8.64%, #1A0E43 99.99%);
+}
+.mypage-text{
+    color: #FFF;
+}
