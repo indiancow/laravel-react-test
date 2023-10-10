@@ -38,6 +38,46 @@
     color:#A13DE5;
 }
 
+
+/* mypage */
+
+.mycard-left-section, .mycard-right-section {
+    height: calc(100vh - 60px); /* 60pxはNavbarの高さ分を想定。必要に応じて調整してください。 */
+    padding: 20px;
+}
+
+.issue-card, .feedback-card {
+    background: #000;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 5px; /* 角を少し丸める */
+}
+
+.issue-card h3, .feedback-card h3{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 10px;
+}
+
+.issue-card p, .feedback-card p{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 5px; 
+}
+
+.issue-details {
+    text-align: right; /* Align text to the right within the issue details */
+}
+
+
 .mypage-bgc{
     background: linear-gradient(114deg, #401144 8.64%, #1A0E43 99.99%);
 }
@@ -109,4 +149,9 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+.level-component{
+    background: linear-gradient(144deg, #FBA541 11.79%, #FF8A00 95.92%);
+    border-radius: 50%;
 }
