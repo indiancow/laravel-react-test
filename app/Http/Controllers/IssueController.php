@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Issue;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Storage; 
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,7 @@ class IssueController extends Controller
                 'id' => $issue->id,
                 'tag' => $issue->tag->name,
                 'author' => $issue->user->name,
+                'videoUrl' => Storage::disk('public')->url($issue->video_path),
                 'description' => $issue->description,
                 'createdAt' => $issue->created_at->format('Y-m-d H:i:s'),
             ];
@@ -59,6 +61,7 @@ class IssueController extends Controller
             'tag_id' => 'required|exists:tags,id',
             'description' => 'required|string',
             // 他のバリデーションルールもここに追加できます。
+            'video' => 'nullable|mimes:mp4,mov,ogg,qt'
         ]);
 
         // dd($validated);
@@ -67,6 +70,14 @@ class IssueController extends Controller
         $issue->user_id = Auth::user()->id;
         $issue->tag_id = $validated['tag_id'];
         $issue->description = $validated['description']; // もしissuesテーブルにtag_idが存在する場合
+
+        // ビデオがアップロードされたかチェック
+        if ($request->hasFile('video')) {
+            $videoFile = $request->file('video'); // ファイルを取得
+            $videoPath = $videoFile->store('videos', 'public'); // videosディレクトリに保存し、パスを取得
+            $issue->video_path = $videoPath; // video_pathカラムにパスを保存
+        }
+
         $issue->save();
         // dd($issue);
         event(new IssueCreated($issue->user_id, $issue->id, $issue->tag_id));
