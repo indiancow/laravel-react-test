@@ -10,56 +10,41 @@ const Show = ({ user, users, issues, feedbacks, userSkills }) => {
                 {/* 他のコンポーネントやコンテンツ */}
             </div>
             <div>
-                <h1>{user.name}'s マイページ</h1>
-                <div>
-                    <h2>Other Users</h2>
-                    <select onChange={(e) => {
-                        const userId = e.target.value;
-                        if (userId) {
-                            // userIdが存在すればMyPageに遷移
-                            window.location.href = `/mypage/${userId}`;
-                        }
-                    }}>
-                        <option value="">ユーザーを選択</option>
-                        {users.map((otherUser) => (
-                            <option key={otherUser.id} value={otherUser.id}>
-                                {otherUser.name}
-                            </option>
-                        ))}
-                    </select>
-
-                    {/* <select>
-                    {users.map((otherUser) => (
-                        <option key={otherUser.id}>
-                        <InertiaLink href={`/mypage/${otherUser.id}`}>{otherUser.name}</InertiaLink>
-                        </option>
-                    ))}
-                    </select> */}
+                <div className='flex'>
+                    <div className='mypage-username-card w-1/2'>
+                        <h1 className='mypage-username'>{user.name}'s マイページ</h1>
+                    </div>
+                    <div>
+                        <h2>Other Users</h2>
+                        <select onChange={(e) => {
+                            const userId = e.target.value;
+                            if (userId) {
+                                // userIdが存在すればMyPageに遷移
+                                window.location.href = `/mypage/${userId}`;
+                            }
+                        }}>
+                            <option value="">ユーザーを選択</option>
+                            {users.map((otherUser) => (
+                                <option key={otherUser.id} value={otherUser.id}>
+                                    {otherUser.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                 </div>
                 
                 <div>
-                    <h2>あなたのスキル</h2>
                     <div>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th>スキル名</th>
-                                    <th>説明</th>
-                                    <th>レベル</th>
-                                    <th>経験値</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {userSkills.map(userSkill => (
-                                    <tr key={userSkill.id}>
-                                        <td>{userSkill.skill.name}</td>
-                                        <td>{userSkill.skill.description}</td>
-                                        <td>{userSkill.level}</td>
-                                        <td>{userSkill.experience}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                        <h2>あなたのスキル</h2>
+                        <div className="card-container">
+                            {userSkills.map(userSkill => (
+                            <div key={userSkill.id} className="skill-card">
+                                <h3 className='skill-card-name'>{userSkill.skill.name}</h3>
+                                <p>{userSkill.skill.description}</p>
+                                <p>レベル: Lv <span className='skill-card-level'>{userSkill.level}</span></p>
+                            </div>
+                            ))}
+                        </div>
                     </div>
                     <div>
                         {/* 他のコンポーネントや要素 */}
