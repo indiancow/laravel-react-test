@@ -11,7 +11,7 @@ class Issue extends Model
     use HasFactory;
 
     protected $table = 'issues';
-    protected $fillable = ['user_id', 'tag_id', 'description'];
+    protected $fillable = ['user_id', 'tag_id', 'description','video_path'];
     
     public function user()
     {
