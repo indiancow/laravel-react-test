@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name'); // ジムリーダー名
             $table->text('description'); // ジムリーダーの説明
+            $table->foreignId('skill_id')->constrained();
             $table->unsignedBigInteger('badge_id'); // ジムリーダーが持つバッジID
+            $table->integer('required_level')->default(1); // default(1)は必要に応じて変更してください。
             $table->timestamps();
         });
     }

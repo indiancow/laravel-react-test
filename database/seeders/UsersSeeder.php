@@ -18,6 +18,7 @@ class UsersSeeder extends Seeder
                 'name' => 'test' . $index,
                 'email' => 'test' . $index . '@gmail.com',
                 'password' => 'test' . $index . 'test' . $index,
+                'is_manager' => $index % 2 === 0, // 偶数のインデックスでtrue、奇数でfalse
             ]);
         }
     }
