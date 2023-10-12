@@ -14,4 +14,9 @@ class GymLeader extends Model
     {
         return $this->belongsTo(Badge::class);
     }
+
+    public function questions()
+    {
+        return $this->hasMany(GymLeaderQuestion::class);
+    }
 }

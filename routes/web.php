@@ -2,9 +2,10 @@
 
 use App\Http\Controllers\IssueController;
 use App\Http\Controllers\FeedbackController;
+use App\Http\Controllers\GymLeaderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MypageController;
-
+use App\Http\Controllers\UserAnswerController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -50,5 +51,10 @@ Route::resource('issues', IssueController::class);
 Route::get('/feedbacks/create/{issue}', [FeedbackController::class, 'create']);
 Route::resource('feedbacks', FeedbackController::class);
 
+// gymleader
+Route::get('gymleaders', [GymLeaderController::class, 'index'])->name('gymleaders.index');
+Route::get('gymleaders/{gymLeader}', [GymLeaderController::class, 'show'])->name('gymleaders.show');
+
+Route::post('gymleaders/{gymLeader}/answers', [UserAnswerController::class, 'store'])->name('answers.store');
 
 require __DIR__.'/auth.php';

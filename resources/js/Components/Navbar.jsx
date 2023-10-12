@@ -9,6 +9,7 @@ function Navbar() {
                 <li className="text-white"><InertiaLink href="/issues/create" className="hover:underline">クエスト作成</InertiaLink></li>
                 <li className="text-white"><InertiaLink href="/issues" className="hover:underline">クエスト一覧</InertiaLink></li>
                 <li className="text-white"><InertiaLink href="/feedbacks" className="hover:underline">フィードバック一覧</InertiaLink></li>
+                <li className="text-white"><InertiaLink href="/gymleaders" className="hover:underline">ジムリーダー</InertiaLink></li>
                 <li className="text-white"><InertiaLink href="/mypage" className="hover:underline">MyPage</InertiaLink></li>
             </ul>
         </nav>
