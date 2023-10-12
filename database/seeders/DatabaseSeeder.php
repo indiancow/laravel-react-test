@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\GymLeader;
 use Illuminate\Database\Seeder;
+use Symfony\Component\Console\Question\Question;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GymLeaderSeeder::class);
         $this->call(UsersSeeder::class);
         $this->call(UserSkillSeeder::class);
+        $this->call(QuestionSeeder::class);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

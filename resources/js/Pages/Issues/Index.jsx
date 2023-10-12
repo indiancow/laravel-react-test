@@ -39,10 +39,6 @@ function IssuesIndex({ issues }) {
                         </div>
                     ))}
                 </div>
-                {/* <video width="640" height="360" controls>
-                    <source src="https://business-meeting.s3.ap-northeast-1.amazonaws.com/GMT20210624-115035_Recording_1856x1024.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video> */}
 
             </div>
             <Pagination links={issues.links} />
