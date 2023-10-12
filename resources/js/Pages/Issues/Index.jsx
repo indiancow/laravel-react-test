@@ -39,7 +39,6 @@ function IssuesIndex({ issues }) {
                         </div>
                     ))}
                 </div>
-
             </div>
             <Pagination links={issues.links} />
             
