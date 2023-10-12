@@ -43,6 +43,8 @@ Route::middleware('auth')->group(function () {
 
 // issue
 Route::resource('issues', IssueController::class);
+// s3
+// Route::get('/api/s3-upload-url', [IssueController::class, 'getS3UploadUrl']);
 
 // feedbacks
 Route::get('/feedbacks/create/{issue}', [FeedbackController::class, 'create']);

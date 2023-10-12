@@ -20,7 +20,6 @@ class TagsSeeder extends Seeder
             ['name' => '関係構築'],
             ['name' => 'ヒアリング'],
             ['name' => 'クロージング'],
-            ['name' => 'Giver'],
             // 他のスキルも同様に追加
         ];
 

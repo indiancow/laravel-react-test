@@ -21,6 +21,7 @@ class SkillsTableSeeder extends Seeder
             ['name' => 'ヒアリング', 'description' => '顧客の実現したいことを引き出せているか。'],
             ['name' => 'クロージング', 'description' => '企業の課題に合わせた提案ができているか。'],
             ['name' => 'Giver', 'description' => '学んだことの共有を積極的に取り組んでいるか。'],
+            ['name' => '探求者', 'description' => '現状に満足せず、課題を見つけ続けているか。'],
             // 他のスキルも同様に追加
         ];
 

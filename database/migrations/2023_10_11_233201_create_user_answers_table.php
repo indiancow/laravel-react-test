@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('gym_leaders', function (Blueprint $table) {
-            $table->integer('required_level')->after('badge_id')->default(1); // default(1)は必要に応じて変更してください。
+        Schema::create('user_answers', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_gym_leader_id')->constrained();
+            $table->foreignId('gym_leader_question_id')->constrained();
+            $table->text('answer_text');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('gym_leaders', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('user_answers');
     }
 };

@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-
-use App\Models\GymLeader;
-use App\Models\Badge;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\GymLeader;
+use App\Models\Skill;
 
 class GymLeaderSeeder extends Seeder
 {
@@ -15,47 +13,39 @@ class GymLeaderSeeder extends Seeder
      */
     public function run(): void
     {
-        $badgeIds = Badge::pluck('id'); // すべてのバッジIDを取得
-        $gymLeaders = [
-            [
-                'name' => '火炎のヒカリ',
-                'description' => '火のポケモンを使うジムリーダー。情熱的で熱いバトルを展開する。',
-                'badge_id' => $badgeIds->random(), // ランダムなバッジIDを設定
-            ],
-            [
-                'name' => '海流のサラ',
-                'description' => '水のポケモンを使うジムリーダー。冷静沈着で流れるようなバトルを得意とする。',
-                'badge_id' => $badgeIds->random(),
-            ],
-            [
-                'name' => '大地のゴロウ',
-                'description' => '地面のポケモンを使うジムリーダー。堅実で揺るがないバトルスタイル。',
-                'badge_id' => $badgeIds->random(),
-            ],
-            [
-                'name' => '雷光のリン',
-                'description' => '電気のポケモンを使うジムリーダー。スピーディで瞬発力に富んだバトルをする。',
-                'badge_id' => $badgeIds->random(),
-            ],
-            [
-                'name' => '天空のカナ',
-                'description' => '飛行のポケモンを使うジムリーダー。高度な戦術で相手を翻弄する。',
-                'badge_id' => $badgeIds->random(),
-            ],
-            [
-                'name' => '凍結のユキオ',
-                'description' => '氷のポケモンを使うジムリーダー。冷徹な戦略で相手を凍らせる。',
-                'badge_id' => $badgeIds->random(),
-            ],
-            [
-                'name' => '自然のミドリ',
-                'description' => '草のポケモンを使うジムリーダー。自然の力で相手を包み込む。',
-                'badge_id' => $badgeIds->random(),
-            ],
+        // スキルの名前とIDの配列を取得
+        $skills = Skill::whereIn('name', [
+            '説明', '提案', '期待値調整', '関係構築', 'ヒアリング', 'クロージング'
+        ])->pluck('id', 'name');
+
+        // ジムリーダーのデータを作成
+        $gymLeadersData = [];
+        $leaderNames = [
+            '説明' => ['説明おやじ', '説明紳士', '説明マスター'],
+            '提案' => ['提案の新米', '提案プロ', '提案の魔術師'],
+            '期待値調整' => ['期待値の見習い', '期待値の調整師', '期待値の指揮者'],
+            '関係構築' => ['関係の構築者', '関係のアーティスト', '関係の巧匠'],
+            'ヒアリング' => ['ヒアリング初心者', 'ヒアリングエキスパート', 'ヒアリングの達人'],
+            'クロージング' => ['クロージング学生', 'クロージングの先生', 'クロージングの神']
         ];
 
-        foreach ($gymLeaders as $gymLeader) {
-            GymLeader::create($gymLeader);
+        $badgeIdCounter = 1;
+
+        foreach ($leaderNames as $skillName => $names) {
+            foreach ($names as $level => $name) {
+                $gymLeadersData[] = [
+                    'name' => $name,
+                    'description' => $skillName . 'スキルのジムリーダー。レベル' . ($level + 1) . 'の課題に挑戦しよう！',
+                    'skill_id' => $skills[$skillName],
+                    'badge_id' => $badgeIdCounter++, // 各ジムリーダーに異なるバッジを割り当て
+                    'required_level' => $level + 1,
+                ];
+            }
+        }
+
+        // ジムリーダーのデータをデータベースに挿入
+        foreach ($gymLeadersData as $data) {
+            GymLeader::create($data);
         }
     }
 }
