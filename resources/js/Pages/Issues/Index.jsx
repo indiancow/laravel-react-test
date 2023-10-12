@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '@/Components/Navbar';
+import Modal from '@/Components/Modal';
+import CreateFeedback from '@/Components/CreateFeedback';
+
 
 const Index = ({ issues }) => {
+    const createFeedback = (issueId) => {
+        // Navigate to the feedback creation page
+        window.location.href = `/feedbacks/create/${issueId}`;
+    };
+    const [showModal, setShowModal] = useState(false);
+    const [selectedIssue, setSelectedIssue] = useState(null);
+    
+    const handleFeedbackClick = (issue) => {
+        setSelectedIssue(issue);
+        setShowModal(true);
+    };
     return (
         <div>
             <Navbar />
@@ -21,6 +35,7 @@ const Index = ({ issues }) => {
                                     <h3 className='index-title'>{issue.tag}</h3> {/* この行を追加 */}
                                     <p className='issue-index-card-username'>{issue.author}</p> {/* この行を追加 */}
                                     <p>{issue.description}</p>
+                                    <button onClick={() => handleFeedbackClick(issue)}>フィードバック</button>
                                 </div>
                             </div>
                         ))}
@@ -40,6 +55,7 @@ const Index = ({ issues }) => {
                                     <h3 className='index-title'>{issue.tag}</h3>
                                     <p className='issue-index-card-username'> {issue.author}</p> 
                                     <p>{issue.description}</p>
+                                    <button onClick={() => handleFeedbackClick(issue)}>フィードバック</button>
                                 </div>
                             </div>
                         ))}
@@ -55,11 +71,16 @@ const Index = ({ issues }) => {
                             <h3 className='index-title'>{issue.tag}</h3> 
                             <p className='issue-index-card-username'> {issue.author}</p> 
                             <p>{issue.description}</p>
+                            <button onClick={() => handleFeedbackClick(issue)}>フィードバック</button>
                         </div>
                     ))}
                 </div>
             </div>
-        
+            {showModal && selectedIssue && (
+                <Modal show={showModal} onClose={() => setShowModal(false)}>
+                    <CreateFeedback issue={selectedIssue} />
+                </Modal>
+            )}
         </div>
     );
 };
