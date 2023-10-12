@@ -22,10 +22,12 @@ class IssueController extends Controller
     {
         $issues = Issue::with(['user', 'tag'])
             ->paginate(10);
-            // dd(get_class($issues)); 
-        $issues->getCollection()->transform(function ($issue) {
+
+        // 変換されたコレクションを取得し、それを$issuesオブジェクトに再セットします。
+        $transformedIssues = $issues->getCollection()->transform(function ($issue) {
             return [
                 'id' => $issue->id,
+                'author' => $issue->user->name,
                 'tag' => $issue->tag->name,
                 'author' => $issue->user->name,
                 'videoUrl' => Storage::disk('public')->url($issue->video_path),
@@ -34,11 +36,12 @@ class IssueController extends Controller
             ];
         });
 
+        // ページネーションオブジェクトのコレクションを変換後のものに置き換えます。
+        $issues->setCollection($transformedIssues);
 
-        // $issues = Issue::all();
-        // dd($issues);
         return Inertia::render('Issues/Index', ['issues' => $issues]);
     }
+
 
     /**
      * Show the form for creating a new resource.
