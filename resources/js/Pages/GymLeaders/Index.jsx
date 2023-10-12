@@ -3,18 +3,18 @@ import React from 'react';
 
 const Index = ({ gymLeaders }) => {
     console.log(gymLeaders)
+    // console.log(userSkillLevels)
     return (
         <div>
             <Navbar />
-            <h1>Gym Leaders</h1>
+            <h1>ジムリーダー</h1>
             <ul>
-                {gymLeaders.map((gymLeader) => (
-                    <li key={gymLeader.id}>
-                        <a href={route('gymleaders.show', gymLeader.id)}>
-                            {gymLeader.name}
-                        </a>
-                        {/* <li>{leader.id}</li> */}
-                    </li>
+                {Object.values(gymLeaders).map((gymLeader) => (
+                        <li key={gymLeader.id}>
+                            <a href={route('gymleaders.show', gymLeader.id)}>
+                                {gymLeader.name}
+                            </a>
+                        </li>
                 ))}
             </ul>
         </div>
