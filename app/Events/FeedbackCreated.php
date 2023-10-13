@@ -25,9 +25,7 @@ class FeedbackCreated
     public function __construct(Feedback $feedback)
     {
         $this->feedback = $feedback;
-        // $this->userId = $userId;
-        // $this->issueId = $issueId;
-        // $this->tagId = $tagId;
+        // dd($feedback);
     }
 
     /**

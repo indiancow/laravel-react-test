@@ -16,6 +16,9 @@ const Index = ({ issues }) => {
         setSelectedIssue(issue);
         setShowModal(true);
     };
+    const handleCloseModal = () => {
+        setShowModal(false);
+    };
     return (
         <div>
             <Navbar />
@@ -78,7 +81,7 @@ const Index = ({ issues }) => {
             </div>
             {showModal && selectedIssue && (
                 <Modal show={showModal} onClose={() => setShowModal(false)}>
-                    <CreateFeedback issue={selectedIssue} />
+                    <CreateFeedback issue={selectedIssue} onClose={handleCloseModal} />
                 </Modal>
             )}
         </div>

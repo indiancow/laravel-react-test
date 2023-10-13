@@ -40,10 +40,7 @@ class FeedbackController extends Controller
     public function store(StoreFeedbackRequest $request)
     {
         // dd('dd');
-        $validated = $request->validate([
-            'issue_id' => 'required|exists:issues,id', // issuesテーブルに存在するidであることを確認
-            'content' => 'required|string', // コンテンツは必須で、文字列であることを確認
-        ]);
+        $validated = $request->validated();
         
         $feedback = Feedback::create([
             'user_id' => auth()->id(), // 認証済みユーザーのID
