@@ -3,32 +3,89 @@ import { InertiaLink } from '@inertiajs/inertia-react';
 import Navbar from '../../components/Navbar';
 import UserSelector from '../../components/UserSelector';
 
-const Show = ({ user, users, issues, feedbacks, userSkills }) => {
+const MySvgComponent = ({level}) => {
+    console.log(level)
+    if(level >= 1 && level < 30) {
+        return <MySvgComponentLevel1 />;
+    } else if(level >= 30 && level < 70) {
+        return <MySvgComponentLevel2 />;
+    } else if(level >= 70 && level <= 100) {
+        return <MySvgComponentLevel3 />;
+    } else {
+        return <p>無効なレベルです。</p>;
+    }
+};
+
+const getCharacterBasedOnSkills = (character, giverSkillLevel, seekerSkillLevel) => {
+    // あなたのロジックに基づいてキャラクターを選択します。 
+    if (giverSkillLevel < 30 && seekerSkillLevel < 30) {
+        return character[0];
+    } else if (giverSkillLevel >= 30 && giverSkillLevel < 70 && seekerSkillLevel >= 30 && seekerSkillLevel < 70) {
+        return character[1];
+    } else if (giverSkillLevel >= 70 && seekerSkillLevel >= 70) {
+        return character[2];
+    } else {
+        // デフォルトキャラクターを返すか、nullを返して選択されていないことを示す。
+        return null;
+    }
+};
+
+const Show = ({ user, users, issues, feedbacks, userSkills, character }) => {
+
+    const giverSkill = userSkills.find(skill => skill.skill.name === "Giver");
+    const seekerSkill = userSkills.find(skill => skill.skill.name === "探求者");
+
+    const selectedCharacter = getCharacterBasedOnSkills(character, giverSkill?.level || 0, seekerSkill?.level || 0);
+    // console.log(seekerSkill)
+    console.log(selectedCharacter.image_path)
+
     return (
         <div className='mypage-bgc mypage-text'>
             <Navbar />
             <div className='flex'>
+                <p>{userSkills.level}</p>
                 {/* Left Section */}
                 <div className='mycard-left-section w-3/4 overflow-y-auto'>
                     <div className='mypage-username-card'>
                         <h1 className='mypage-username'>{user.name}'s マイページ</h1>
+                        {selectedCharacter ? (
+                            <>
+                                <p>{selectedCharacter.name}</p>
+                                <p>{selectedCharacter.subtitle}</p>
+                                <p>{selectedCharacter.description}</p>
+                                <img src={`/storage/${selectedCharacter.image_path}`} alt={selectedCharacter.name} />
+                            </>
+                        ) : (
+                            <p>No character selected</p>
+                        )}
+                        {/* Giver と 探求者 のスキルを表示 */}
+                        {giverSkill && (
+                            <p>{giverSkill.skill.name}: Lv {giverSkill.level}</p>
+                        )}
+                        {seekerSkill && (
+                            <p>{seekerSkill.skill.name}: Lv {seekerSkill.level}</p>
+                        )}
+                        <MySvgComponent />
                     </div>
                     <UserSelector users={users} />
                     <div>
                         <h2>あなたのスキル</h2>
                         <div className="card-container">
+                            {/* それ以外のスキルを表示 */}
                             {userSkills.map(userSkill => (
-                                <div key={userSkill.id} className="skill-card">
-                                    <div className='flex'>
-                                        <div>
-                                            <h3 className='skill-card-name'>{userSkill.skill.name}</h3>
-                                            <p>{userSkill.skill.description}</p>
-                                        </div>
-                                        <div className='level-component'>
-                                            <p>レベル: Lv <span className='skill-card-level'>{userSkill.level}</span></p>
+                                userSkill.skill.name !== 'Giver' && userSkill.skill.name !== '探求者' && (
+                                    <div key={userSkill.id} className="skill-card">
+                                        <div className='flex'>
+                                            <div>
+                                                <h3 className='skill-card-name'>{userSkill.skill.name}</h3>
+                                                <p>{userSkill.skill.description}</p>
+                                            </div>
+                                            <div className='level-component'>
+                                                <p>レベル: Lv <span className='skill-card-level'>{userSkill.level}</span></p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                )
                             ))}
                         </div>
                     </div>
@@ -72,106 +129,3 @@ const Show = ({ user, users, issues, feedbacks, userSkills }) => {
 };
 
 export default Show;
-
-
-
-
-
-
-
-// import React from 'react';
-// import { InertiaLink } from '@inertiajs/inertia-react';
-// import Navbar from '../../components/Navbar'; 
-// import UserSelector from '../../components/UserSelector'; 
-
-// const Show = ({ user, users, issues, feedbacks, userSkills }) => {
-//     return (
-//         <div className='mypage-bgc mypage-text'>
-//             <div>
-//                 <Navbar />{/* Navbarコンポーネントを配置 */}
-//                 {/* 他のコンポーネントやコンテンツ */}
-//             </div>
-//             <div>
-//                 <div className='flex'>
-//                     <div className='mypage-username-card w-1/2'>
-//                         <h1 className='mypage-username'>{user.name}'s マイページ</h1>
-//                     </div>
-//                     <UserSelector users={users} />
-//                 </div>
-                
-//                 <div>
-//                     <div>
-//                         <h2>あなたのスキル</h2>
-//                         <div className="card-container">
-//                             {userSkills.map(userSkill => (
-//                             <div key={userSkill.id} className="skill-card">
-//                                 <div className='flex'>
-//                                     <div>
-//                                         <h3 className='skill-card-name'>{userSkill.skill.name}</h3>
-//                                         <p>{userSkill.skill.description}</p>
-//                                     </div>
-//                                     <div className='level-component'>
-//                                         <p>レベル: Lv <span className='skill-card-level'>{userSkill.level}</span></p>
-//                                     </div> 
-//                                 </div>
-//                             </div>
-//                             ))}
-//                         </div>
-//                     </div>
-//                     <div>
-//                         {/* 他のコンポーネントや要素 */}
-//                         <h2>あなたのこれまでの課題</h2>
-//                         <table className="table">
-//                             <thead>
-//                                 <tr>
-//                                     <th>課題タグ</th>
-//                                     <th>説明</th>
-//                                     <th>作成日時</th>
-//                                 </tr>
-//                             </thead>
-//                             <tbody>
-//                                 {issues.map(issue => (
-//                                     <tr key={issue.id}>
-//                                         <td>{issue.tag.name}</td> {/* もしtagがnullの可能性があれば、条件レンダリングを検討してください */}
-//                                         <td>{issue.description}</td>
-//                                         <td>{new Date(issue.created_at).toLocaleDateString()}</td>
-//                                     </tr>
-//                                 ))}
-//                             </tbody>
-//                         </table>
-//                     </div>
-//                     <div>
-//                         <h2>あなたがもらったフィードバック</h2>
-//                         <table>
-//                             <thead>
-//                             <tr>
-//                                 <th>課題タグ</th>
-//                                 <th>コンテンツ</th>
-//                                 <th>フィードバック作成者</th>
-//                                 <th>作成日時</th>
-//                             </tr>
-//                             </thead>
-//                             <tbody>
-//                             {feedbacks.map((feedback) => (
-//                                 <tr key={feedback.id}>
-//                                 <td>{feedback.issue.tag.name}</td>
-//                                 <td>{feedback.content}</td>
-//                                 <td>
-//                                     <InertiaLink href={`/mypage/${feedback.user_id}`}>
-//                                     {users.find((u) => u.id === feedback.user_id).name}
-//                                     </InertiaLink>
-//                                 </td>
-//                                 <td>{new Date(feedback.created_at).toLocaleDateString()}</td>
-//                                 </tr>
-//                             ))}
-//                             </tbody>
-//                         </table>
-//                     </div>
-//                 </div>
-//             </div>
-            
-//         </div>
-//     );
-// };
-
-// export default Show;

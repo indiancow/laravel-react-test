@@ -12,7 +12,11 @@ const Show = ({ gymLeader }) => {
         const formData = new FormData(event.target);
         
         try {
+            console.log(gymLeader.id)
+            console.log(route('answers.store', gymLeader.id));
+
             const response = await axios.post(route('answers.store', gymLeader.id), formData);
+            // console.log(route('answers.store', gymLeader.id));
             // 成功した場合の処理
             console.log(response.data);
         } catch (error) {

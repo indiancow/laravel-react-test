@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('characters', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('description');
+            $table->string('subtitle');
             $table->string('image_path')->nullable(); // キャラクターイメージのパス。null許容
-            $table->foreignId('skill_id')->constrained(); 
             $table->timestamps();
         });
     }
