@@ -19,4 +19,7 @@ class GymLeader extends Model
     {
         return $this->hasMany(GymLeaderQuestion::class);
     }
+    public function skill() {
+        return $this->belongsTo('App\Models\Skill', 'skill_id');
+    }
 }

@@ -2,21 +2,40 @@ import Navbar from '@/Components/Navbar';
 import React from 'react';
 
 const Index = ({ gymLeaders }) => {
-    console.log(gymLeaders)
-    // console.log(userSkillLevels)
+    console.log(gymLeaders);
+
+    // ジムリーダーをskill_idごとにグループ化
+    const groupedGymLeaders = gymLeaders.reduce((acc, gymLeader) => {
+        if (!acc[gymLeader.skill_id]) {
+            acc[gymLeader.skill_id] = [];
+        }
+        acc[gymLeader.skill_id].push(gymLeader);
+        return acc;
+    }, {});
+
     return (
         <div>
             <Navbar />
-            <h1>ジムリーダー</h1>
-            <ul>
-                {Object.values(gymLeaders).map((gymLeader) => (
-                        <li key={gymLeader.id}>
-                            <a href={route('gymleaders.show', gymLeader.id)}>
-                                {gymLeader.name}
-                            </a>
-                        </li>
-                ))}
-            </ul>
+            <div className='gymleader-content'>
+                <h1>ジムリーダー</h1>
+                <div className="gym-leader-container">
+                    {Object.values(groupedGymLeaders).map((leadersOfSameSkill) => (
+                        <div key={leadersOfSameSkill[0].skill_id} className="gym-leader-skill-area">
+                            <h2>Skill ID: {leadersOfSameSkill[0].skill.name}</h2>
+                            <div className="gym-leader-cards">
+                                {leadersOfSameSkill.map((gymLeader) => (
+                                    <div key={gymLeader.id} className="gym-leader-card">
+                                        <a href={route('gymleaders.show', gymLeader.id)}>
+                                            {gymLeader.name}
+                                        </a>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
         </div>
     );
 };
