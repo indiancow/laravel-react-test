@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const Show = ({ gymLeader }) => {
     
-    // console.log(gymLeader)
+    console.log(gymLeader)
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -28,18 +28,29 @@ const Show = ({ gymLeader }) => {
     return (
         <div>
             <Navbar />
-            <h1>{gymLeader.name}</h1>
-            <p>{gymLeader.description}</p>
-            <h2>Questions</h2>
-            <form onSubmit={handleSubmit}>
-                {gymLeader.questions.map((question) => (
-                    <div key={question.id}>
-                        <p>{question.question_text}</p>
-                        <textarea name={`answers[${question.id}]`} required />
+            <div className='gymleader-bg'>
+                <div className='gymleader-leftarea'>
+                    <div>
+                        <div className='gymleader-name'>
+                            <h1 className=''>{gymLeader.name}</h1>
+                            {/* <p>{gymLeader.description}</p> */}
+                        </div>
                     </div>
-                ))}
-                <button type="submit">Submit Answers</button>
-            </form>
+                    <img src={`/storage/${gymLeader.image_path.split('/').pop()}`} alt={`Image of ${gymLeader.name}`} className="gymleader-image" />
+                </div>
+                <div className='gymleader-rightarea'>
+                    <form onSubmit={handleSubmit}>
+                        {gymLeader.questions.map((question) => (
+                            <div key={question.id} className='question-card'>
+                                <p>{question.question_text}</p>
+                                <textarea name={`answers[${question.id}]`} required />
+                            </div>
+                        ))}
+                        <button type="submit">提出</button>
+                    </form>
+                </div>
+                
+            </div>
         </div>
     );
 };

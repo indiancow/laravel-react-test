@@ -30,6 +30,7 @@ class GymLeaderSeeder extends Seeder
         ];
 
         $badgeIdCounter = 1;
+        $imageIdCounter = 1;
 
         foreach ($leaderNames as $skillName => $names) {
             foreach ($names as $level => $name) {
@@ -39,6 +40,7 @@ class GymLeaderSeeder extends Seeder
                     'skill_id' => $skills[$skillName],
                     'badge_id' => $badgeIdCounter++, // 各ジムリーダーに異なるバッジを割り当て
                     'required_level' => $level + 1,
+                    'image_path' => "Gymleader_" .$imageIdCounter++ . ".png"
                 ];
             }
         }
