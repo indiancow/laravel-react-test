@@ -5,7 +5,7 @@ const Index = ({ gymLeaders }) => {
     console.log(gymLeaders);
 
     // ジムリーダーをskill_idごとにグループ化
-    const groupedGymLeaders = gymLeaders.reduce((acc, gymLeader) => {
+    const groupedGymLeaders = Object.values(gymLeaders).reduce((acc, gymLeader) => {  // ← ここを修正
         if (!acc[gymLeader.skill_id]) {
             acc[gymLeader.skill_id] = [];
         }
@@ -21,12 +21,13 @@ const Index = ({ gymLeaders }) => {
                 <div className="gym-leader-container">
                     {Object.values(groupedGymLeaders).map((leadersOfSameSkill) => (
                         <div key={leadersOfSameSkill[0].skill_id} className="gym-leader-skill-area">
-                            <h2>Skill ID: {leadersOfSameSkill[0].skill.name}</h2>
+                            <h2>ジャンル: {leadersOfSameSkill[0].skill.name}</h2>
                             <div className="gym-leader-cards">
                                 {leadersOfSameSkill.map((gymLeader) => (
                                     <div key={gymLeader.id} className="gym-leader-card">
+                                        <img src="/storage/app/public/GymleaderIcon.png" alt="Gym Leader Icon" />
                                         <a href={route('gymleaders.show', gymLeader.id)}>
-                                            {gymLeader.name}
+                                            <p>{gymLeader.name}</p>
                                         </a>
                                     </div>
                                 ))}
@@ -35,7 +36,6 @@ const Index = ({ gymLeaders }) => {
                     ))}
                 </div>
             </div>
-
         </div>
     );
 };
