@@ -5,6 +5,7 @@ import CreateFeedback from '@/Components/CreateFeedback';
 
 
 const Index = ({ issues }) => {
+    console.log(issues.data)
     const createFeedback = (issueId) => {
         // Navigate to the feedback creation page
         window.location.href = `/feedbacks/create/${issueId}`;
@@ -19,6 +20,7 @@ const Index = ({ issues }) => {
     const handleCloseModal = () => {
         setShowModal(false);
     };
+    const defaultStorageUrl = "http://localhost/storage/";
     return (
         <div>
             <Navbar />
@@ -28,7 +30,8 @@ const Index = ({ issues }) => {
                 <div className="video-area">
                     <h2 className='issue-index-title'>新着</h2>
                     <div className='new-videos'>
-                        {issues.data.filter(issue => issue.videoUrl !== null).slice(0, 3).map((issue) => (
+                        {issues.data.filter(issue => issue.videoUrl !== defaultStorageUrl).map((issue) => (
+
                             <div key={issue.id} className='issue-index-card'>
                                 <video width="320" height="240" controls>
                                     <source src={issue.videoUrl} type="video/mp4" />
@@ -48,7 +51,7 @@ const Index = ({ issues }) => {
                 <div className='video-area'>
                     <h2 className='issue-index-title'>すべての動画</h2>
                     <div className="new-videos" style={{ display: 'flex', overflowX: 'scroll' }}>
-                        {issues.data.filter(issue => issue.videoUrl !== null).map((issue) => (
+                        {issues.data.filter(issue => issue.videoUrl !== defaultStorageUrl).map((issue) => (
                             <div key={issue.id} className='issue-index-card'>
                                 <video width="320" height="240" controls>
                                     <source src={issue.videoUrl} type="video/mp4" />
@@ -69,7 +72,7 @@ const Index = ({ issues }) => {
                 {/* All Text Issues Section */}
                 <h2 className='issue-index-title'>クエスト</h2>
                 <div className="text-issues" style={{ maxHeight: '400px', overflowY: 'scroll' }}>
-                    {issues.data.filter(issue => issue.videoUrl === null).map((issue) => (
+                    {issues.data.filter(issue => issue.videoUrl === defaultStorageUrl).map((issue) => (
                         <div className='issue-index-card-text'>
                             <h3 className='index-title'>{issue.tag}</h3> 
                             <p className='issue-index-card-username'> {issue.author}</p> 
