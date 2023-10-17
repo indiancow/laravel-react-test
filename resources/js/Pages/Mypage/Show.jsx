@@ -3,18 +3,18 @@ import { InertiaLink } from '@inertiajs/inertia-react';
 import Navbar from '../../components/Navbar';
 import UserSelector from '../../components/UserSelector';
 
-const MySvgComponent = ({level}) => {
-    console.log(level)
-    if(level >= 1 && level < 30) {
-        return <MySvgComponentLevel1 />;
-    } else if(level >= 30 && level < 70) {
-        return <MySvgComponentLevel2 />;
-    } else if(level >= 70 && level <= 100) {
-        return <MySvgComponentLevel3 />;
-    } else {
-        return <p>無効なレベルです。</p>;
-    }
-};
+// const MySvgComponent = ({level}) => {
+//     console.log(level)
+//     if(level >= 1 && level < 30) {
+//         return <MySvgComponentLevel1 />;
+//     } else if(level >= 30 && level < 70) {
+//         return <MySvgComponentLevel2 />;
+//     } else if(level >= 70 && level <= 100) {
+//         return <MySvgComponentLevel3 />;
+//     } else {
+//         return <p>無効なレベルです。</p>;
+//     }
+// };
 
 const getCharacterBasedOnSkills = (character, giverSkillLevel, seekerSkillLevel) => {
     // あなたのロジックに基づいてキャラクターを選択します。 
@@ -45,53 +45,64 @@ const Show = ({ user, users, issues, feedbacks, userSkills, character }) => {
             <div className='flex'>
                 <p>{userSkills.level}</p>
                 {/* Left Section */}
-                <div className='mycard-left-section w-3/4 overflow-y-auto'>
+                <div className='mycard-left-section overflow-y-auto'>
                     <div className='mypage-username-card'>
-                        <h1 className='mypage-username'>{user.name}'s マイページ</h1>
-                        {selectedCharacter ? (
-                            <>
-                                <p>{selectedCharacter.name}</p>
-                                <p>{selectedCharacter.subtitle}</p>
-                                <p>{selectedCharacter.description}</p>
-                                <img src={`/storage/${selectedCharacter.image_path}`} alt={selectedCharacter.name} />
-                            </>
-                        ) : (
-                            <p>No character selected</p>
-                        )}
-                        {/* Giver と 探求者 のスキルを表示 */}
-                        {giverSkill && (
-                            <p>{giverSkill.skill.name}: Lv {giverSkill.level}</p>
-                        )}
-                        {seekerSkill && (
-                            <p>{seekerSkill.skill.name}: Lv {seekerSkill.level}</p>
-                        )}
-                        <MySvgComponent />
+                        <div className='mypage-username-card-leftarea'>
+                            <h1 className='mypage-username'>{user.name}'s マイページ</h1>
+                            {selectedCharacter ? (
+                                <>
+                                    <h2 className='mypage-character-name'>{selectedCharacter.name}</h2>
+                                    <h3 className='mypage-character-subtitle'>{selectedCharacter.subtitle}</h3>
+                                    <div className='mypage-character-description'>
+                                        <p>{selectedCharacter.description}</p>
+                                    </div>
+                                </>
+                            ) : (
+                                <p>No character selected</p>
+                            )}
+                            {/* Giver と 探求者 のスキルを表示 */}
+                            <div className='giver-seeker-level'>
+                                {giverSkill && (
+                                    <div className='mypage-giver-level'>
+                                        <p>{giverSkill.skill.name}: Lv {giverSkill.level}</p>
+                                    </div>
+                                )}
+                                {seekerSkill && (
+                                    <div className='mypage-seeker-level'>
+                                        <p>{seekerSkill.skill.name}: Lv {seekerSkill.level}</p>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                        <div className='mypage-username-card-rightarea'>
+                            <UserSelector users={users} />
+                            <img src={`/storage/${selectedCharacter.image_path}`} alt={selectedCharacter.name} className='mypage-character' />
+                        </div>
                     </div>
-                    <UserSelector users={users} />
                     <div>
-                        <h2>あなたのスキル</h2>
-                        <div className="card-container">
-                            {/* それ以外のスキルを表示 */}
-                            {userSkills.map(userSkill => (
-                                userSkill.skill.name !== 'Giver' && userSkill.skill.name !== '探求者' && (
-                                    <div key={userSkill.id} className="skill-card">
-                                        <div className='flex'>
-                                            <div>
-                                                <h3 className='skill-card-name'>{userSkill.skill.name}</h3>
-                                                <p>{userSkill.skill.description}</p>
-                                            </div>
-                                            <div className='level-component'>
-                                                <p>レベル: Lv <span className='skill-card-level'>{userSkill.level}</span></p>
-                                            </div>
+                    <div className="card-container">
+                        {/* それ以外のスキルを表示 */}
+                        {userSkills.map((userSkill, index) => (
+                            userSkill.skill.name !== 'Giver' && userSkill.skill.name !== '探求者' && (
+                                <div key={userSkill.id} className={`skill-card ${index % 2 === 0 ? 'left-card' : 'right-card'}`}>
+                                    <div className='flex'>
+                                        <div>
+                                            <h3 className='skill-card-name'>{userSkill.skill.name}</h3>
+                                            <p>{userSkill.skill.description}</p>
+                                        </div>
+                                        <div className='level-component'>
+                                            <p>レベル: Lv <span className='skill-card-level'>{userSkill.level}</span></p>
                                         </div>
                                     </div>
-                                )
-                            ))}
-                        </div>
+                                </div>
+                            )
+                        ))}
+                    </div>
+
                     </div>
                 </div>
                 {/* Right Section */}
-                <div className='mycard-right-section w-1/4 overflow-y-auto'>
+                <div className='mycard-right-section overflow-y-auto'>
                     {/* これまでの課題 */}
                     <div>
                         <h2>あなたのこれまでの課題</h2>
