@@ -125,6 +125,19 @@
     padding: 20px;
 }
 
+.mycard-left-section {
+    width: 75%;
+    display: flex;
+    flex-direction: column; /* 子要素を縦に配置する */
+    justify-content: center; /* 縦方向の中心に配置 */
+    align-items: center;     /* 横方向の中心に配置 */
+    height: 100%;            /* 必要に応じて高さを設定 */
+}
+
+.mycard-right-section {
+    width: 25%;
+}
+
 .issue-card, .feedback-card {
     background: #000;
     margin-bottom: 15px;
@@ -165,24 +178,86 @@
 }
 
 .card-container {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    justify-content: space-between; /* カードの間のスペースを均等に分散 */
+    margin-top: 50px;
 }
 
 .mypage-username-card{
+    width: 100%;
     display: flex;
-    height: 95px;
     padding: 25px 25px 40px 25px;
-    flex-direction: column;
-    align-items: flex-start;
+    /* flex-direction: column; */
+    align-items: center;
     gap: 10px;
     flex-shrink: 0;
     align-self: stretch;
     border-radius: 20px;
-    background: #FFF;
     box-shadow: 4px 4px 8px 3px rgba(0, 97, 152, 0.15);
-    color: black;
+    background: linear-gradient(102deg, #B056DC 10.8%, #6B3ECF 90.27%);
+}
+
+.mypage-username-card-leftarea{
+    width: 70%;
+    padding: 5px;
+    display: flex;              /* 追加 */
+    flex-direction: column;     /* 追加 */
+    align-items: center; 
+}
+
+.mypage-username-card-rightarea{
+    width: 30%;
+    align-items: center;
+}
+
+.mypage-character-name{
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 38px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.mypage-character-subtitle{
+    color: #0FF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.mypage-username-card p{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.mypage-giver-level, .mypage-seeker-level{
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.mypage-giver-level{
+    border-radius: 10.888px;
+    border: 2px solid #FFF;
+    background: linear-gradient(102deg, #5956DC 1.32%, #6B3ECF 100.39%);
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.mypage-seeker-level{
+    border-radius: 10.888px;
+    border: 2px solid #FFF;
+    background: linear-gradient(102deg, #007CC1 1.31%, #007B8C 100.39%);
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .mypage-username{
@@ -194,7 +269,30 @@
     line-height: normal;
 }
 
+.mypage-character{
+    width: 230px;
+    height: 250px;
+    flex-shrink: 0;
+}
+
+.mypage-character-description{
+    width: 60%;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.giver-seeker-level{
+    margin-top: 5px;
+    width: 70%;
+}
+
 .skill-card {
+    flex: 0 0 calc(50% - 10px); /* 2つのカードの幅を50%未満にして、マージン分を引く */
+    margin-bottom: 20px; /* カード間の縦のスペース */
     border-radius: 15px;
     background: linear-gradient(102deg, #B7143E 1.31%, #FF5215 1.32%, #FF4C00 100.39%, #FF4C00 100.39%, #FF4C00 100.39%);
     padding: 16px;
@@ -202,10 +300,21 @@
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.left-card {
+    border-radius: 15px;
+    background: linear-gradient(102deg, #B7143E 1.31%, #FF5215 1.32%, #FF4C00 100.39%, #FF4C00 100.39%, #FF4C00 100.39%);
+}
+
+.right-card {
+    border-radius: 15px;
+    background: linear-gradient(102deg, #4B6AB8 1.31%, #4B6AB8 1.32%, #75B6DA 100.38%, #FF4C00 100.39%, #FF4C00 100.39%);
+}
+
+
 .skill-card-name {
     color: #FFF;
     font-family: Inter;
-    font-size: 20px;
+    font-size: 26px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -233,4 +342,56 @@
 .level-component{
     background: linear-gradient(144deg, #FBA541 11.79%, #FF8A00 95.92%);
     border-radius: 50%;
+}
+
+/* gymleader */
+
+.gymleader-content{
+    padding: 0 40px;
+}
+
+.gym-leader-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.gym-leader-skill-area {
+    flex: 0 0 calc(50% - 10px); /* 2つのアイテムの幅を50%未満にして、10px分のマージンを引く */
+    margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.gym-leader-skill-area h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.gym-leader-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* This creates space between the cards */
+}
+
+.gym-leader-card {
+    flex: 1 0 calc(33.333% - 20px); /* for 3 cards per row */
+    background-color: #f7f7f7;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.gym-leader-card a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.gym-leader-card a:hover {
+    color: #007bff;
 }

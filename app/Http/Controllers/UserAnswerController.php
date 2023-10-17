@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\GymLeaderChallenged;
 use App\Models\GymLeader;
 use App\Models\UserAnswer;
 use Illuminate\Http\Request;
@@ -30,6 +31,7 @@ class UserAnswerController extends Controller
      */
     public function store(Request $request, GymLeader $gymLeader)
     {
+        dd('dd');
         // バリデーション
         $validated = $request->validate([
             'answers' => ['required', 'array'],
@@ -38,12 +40,13 @@ class UserAnswerController extends Controller
 
         // 回答を保存
         foreach ($validated['answers'] as $questionId => $answerText) {
-            UserAnswer::create([
+            $user_answer = UserAnswer::create([
                 'user_id' => Auth::id(),
                 'gym_leader_question_id' => $questionId,
                 'answer_text' => $answerText,
             ]);
         }
+        event(new GymLeaderChallenged($user_answer));
 
         // 結果を表示または保存し、次のステップへ
         return redirect()->route('gymleaders.show', $gymLeader)->with('success', 'Answers submitted!');

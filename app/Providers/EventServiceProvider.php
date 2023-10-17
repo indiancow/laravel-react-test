@@ -5,10 +5,12 @@ namespace App\Providers;
 use App\Events\IssueCreated;
 use App\Listeners\AddExperienceForIssue;
 use App\Events\FeedbackCreated;
+use App\Events\GymLeaderChallenged;
 use App\Events\GymLeaderEvent;
 use App\Events\UserLevelUp;
 use App\Listeners\AddExperienceForFeedback;
 use App\Listeners\GymLeaderEventListener;
+use App\Listeners\NotifyManagersAboutNewAnswer;
 use App\Listeners\UpdateUserLevel;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -42,6 +44,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         GymLeaderEvent::class => [
             GymLeaderEventListener::class,
+        ],
+        GymLeaderChallenged::class => [
+            NotifyManagersAboutNewAnswer::class,
         ]
         
     ];

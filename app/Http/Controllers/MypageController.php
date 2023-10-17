@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Character;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -17,6 +18,7 @@ class MypageController extends Controller
         $userSkills = $user->userSkills()->with('skill')->get();
         $issues = $user->issues()->with(['tag', 'feedbacks'])->get();
         $feedbacksReceived = $user->feedbacksReceived()->with('issue.tag')->get();
+        $character = Character::all();
         // dd($feedbacksReceived);
         $users = User::all(); // 全ユーザーを取得
         
@@ -25,7 +27,8 @@ class MypageController extends Controller
             'users' => $users,
             'issues' => $issues,
             'feedbacks' => $feedbacksReceived,
-            'userSkills' => $userSkills
+            'userSkills' => $userSkills,
+            'character' => $character
         ]);
     }
 }

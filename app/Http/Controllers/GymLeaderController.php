@@ -20,10 +20,11 @@ class GymLeaderController extends Controller
     {
         $user = auth()->user();
         // dd(GymLeader::all());
-        $gymLeaders = GymLeader::all()
+        $gymLeaders = GymLeader::with('skill')->get()
         ->filter(function ($gymLeader) use ($user) {
             return $this->gymChallengeService->canChallenge($user, $gymLeader);
         });
+        
         // dd($gymLeaders);
         return Inertia::render('GymLeaders/Index', ['gymLeaders' => $gymLeaders]);
 

@@ -15,9 +15,9 @@ class TagsSeeder extends Seeder
     {
         $tags = [
             ['name' => '説明'],
+            ['name' => '関係構築'],
             ['name' => '提案'],
             ['name' => '期待値調整'],
-            ['name' => '関係構築'],
             ['name' => 'ヒアリング'],
             ['name' => 'クロージング'],
             // 他のスキルも同様に追加
