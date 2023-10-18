@@ -14,6 +14,7 @@ export default function Dashboard({ auth, pendingRecords }) {
                 headers: { 'Content-Type': 'application/json' }
             });
             if (response.ok) {
+                alert('合格を送信しました。');
                 // Successfully updated. You might want to update the UI or redirect.
             } else {
                 console.error("Failed to clear the record.");
@@ -30,6 +31,7 @@ export default function Dashboard({ auth, pendingRecords }) {
                 headers: { 'Content-Type': 'application/json' }
             });
             if (response.ok) {
+                alert('不合格を送信しました。');
                 // Successfully updated. You might want to update the UI or redirect.
             } else {
                 console.error("Failed to set the record to fail.");
@@ -45,30 +47,36 @@ export default function Dashboard({ auth, pendingRecords }) {
             <Head title="Dashboard" />
 
             {auth.user.is_manager == 1 && (
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div className="record-container">
                     {pendingRecords.map((record) => (
                         record.user.id !== auth.user.id ? (
-                        <div key={record.id} className="mb-4 p-4 border rounded shadow-lg bg-white">
-                            {/* User and Gym Leader Details */}
-                            <strong>User:</strong> {record.user.name}<br />
-                            <strong>GymLeader:</strong> {record.gym_leader.name}<br />
-                            <strong>Attempt Count:</strong> {record.attempt_count}<br />
-                            <button onClick={() => handleClear(record.id)}>合格</button>
-                            <button onClick={() => handleFail(record.id)}>不合格</button>
-                            {record.gym_leader.questions?.map((question) => (
-                                <div key={question.id} className="mt-4 p-4 border rounded shadow-lg bg-gray-100">
-                                    <strong>Question:</strong> {question.question_text}<br />
-                                    {question.answers
-                                        .filter(answer => answer.user_id === record.user.id)
-                                        .map((answer) => (
-                                        <div key={answer.id} className="mt-2 p-2 border rounded bg-white">
-                                            <strong>Answer:</strong> {answer.answer_text}<br />
-                                        </div>
-                                    ))}
+                        <div key={record.id} className="record-card">
+                            <div className='record-header'>
+                                <div className="record-details">
+                                    <p className='record-username'>{record.user.name}</p>
+                                    <p className='record-gymleader'>営業ダンジョン：{record.gym_leader.name}</p>
                                 </div>
-                            ))}
+                                <div className="record-actions">
+                                    <button className="btn-clear" onClick={() => handleClear(record.id)}>合格</button>
+                                    <button className="btn-fail" onClick={() => handleFail(record.id)}>不合格</button>
+                                </div>
+                            </div>
+                            <div className='dashboard-question-area'>
+                                {record.gym_leader.questions?.map((question) => (
+                                    <div key={question.id} className="dashboard-question-card">
+                                        <p className='dashboard-question-text'>Q. {question.question_text}</p>
+                                        {question.answers
+                                            .filter(answer => answer.user_id === record.user.id)
+                                            .map((answer) => (
+                                            <div key={answer.id} className="answer-card">
+                                                <p>A. {answer.answer_text}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                        ):null
+                        ) : null
                     ))}
                 </div>
             )}
