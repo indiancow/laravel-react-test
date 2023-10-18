@@ -42,9 +42,9 @@ class EventServiceProvider extends ServiceProvider
         UserLevelUp::class => [
             UpdateUserLevel::class,
         ],
-        GymLeaderEvent::class => [
-            GymLeaderEventListener::class,
-        ],
+        // GymLeaderEvent::class => [
+        //     GymLeaderEventListener::class,
+        // ],
         GymLeaderChallenged::class => [
             NotifyManagersAboutNewAnswer::class,
         ]

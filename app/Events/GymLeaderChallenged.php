@@ -20,11 +20,11 @@ class GymLeaderChallenged
      */
 
 
-    public $user_answer;
+    public $user_answers;
 
-    public function __construct(UserAnswer $user_answer)
+    public function __construct(array $user_answers)
     {
-        $this->user_answer = $user_answer;
+        $this->user_answers = $user_answers;
     }
 
     /**

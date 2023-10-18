@@ -52,7 +52,7 @@
     box-shadow: 4px 4px 8px 3px rgba(0, 97, 152, 0.15);
     display: flex;
     width: 1140px;
-    height: 320px;
+    height: 350px;
     flex-direction: column;
     align-items: center;
     flex-shrink: 0;
@@ -86,8 +86,8 @@
 }
 
 .issue-index-card{
-    width: 236px;
-    height: 223px;
+    width: 240px;
+    height: 270px;
     flex-shrink: 0;
     border-radius: 12px;
     border: 1px solid #D3D3D3;
@@ -118,6 +118,64 @@
 .issue-index-card-username{
     color: #04B400;
 }
+
+
+/* タイムラインのコンテナスタイル */
+.timeline-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+    background-color: #e9ecef; /* 明るい背景色 */
+    border-radius: 15px;
+}
+
+/* 各カードのスタイル */
+.timeline-card {
+    background-color: #fff; /* 白背景 */
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da; /* 境界線の色 */
+}
+
+.timeline-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color:#A13DE5;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.timeline-username {
+    font-size: 16px;
+    color: #04B400;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.timeline-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* ボタンのスタイル */
+.timeline-button {
+    padding: 10px 15px;
+    background: linear-gradient(180deg, #B023E9 0%, #8546D4 100%); /* 青色のボタン背景 */
+    font-weight: 700;
+    color:#FFF;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.timeline-button:hover {
+    background-color: #FF4C00; /* ホバー時の青色 */
+}
+
+
 /* mypage */
 
 .mycard-left-section, .mycard-right-section {
@@ -402,7 +460,6 @@
     font-size: 18px;
     font-style: normal;
     font-weight: 800;
-    line-height: normal;
 }
 
 .gym-leader-card a {
@@ -413,4 +470,105 @@
 
 .gym-leader-card a:hover {
     color: #007bff;
+}
+
+/* gymleader battle */
+.gymleader-bg{
+    background-image: url('/storage/office_background.png');
+    background-size: cover; /* 画像を要素にフィットさせる */
+    background-repeat: no-repeat; /* 画像を繰り返さない */
+    background-position: center; /* 画像を中央に配置 */
+    /* 必要に応じて他のスタイルも追加 */
+    min-height: 100vh; /* ビューポートの高さを100%に設定することで、背景が全画面を覆うようにします */
+    display: flex;
+}
+
+.gymleader-leftarea, .gymleader-rightarea{
+    width: 50%;
+    display: flex; /* Flexboxを適用 */
+    flex-direction: column; /* 子要素を縦方向に並べます */
+    align-items: center; /* 垂直方向の中心に配置 */
+    justify-content: center; /* 水平方向の中心に配置 */
+}
+
+.gymleader-rightarea button{
+    border-radius: 24px;
+    background: linear-gradient(93deg, #4D54FF 10.41%, #0042A5 97.36%);
+    box-shadow: 0px 0px 11.59413px 2.89853px rgba(255, 255, 255, 0.40);
+    width: 100px;
+    font-size: 30px;
+    font-weight: 800;
+    color: #FFF;
+}
+
+.gymleader-name {
+    width: 300px;
+    height: 120px;
+    flex-shrink: 0;
+    background: linear-gradient(180deg, #00F0FF 0%, #2E75FF 100%);
+    color: white; /* 文字色を白に設定 */
+    padding: 15px; /* 内部のスペースを追加 */
+    box-shadow: 10px 10px 0px #000; /* drop-shadow効果を適用 */
+    border: 5px solid #000; /* strokeの代わりに境界線を適用 */
+    text-align: center;
+    line-height: 112px; /* 文字を垂直方向に中央揃え */
+    margin-bottom: 20px;
+}
+
+.gymleader-name h1{
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.gymleader-name p{
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 18px; /* フォントサイズを指定 */
+    margin-top: 0; /* 余分な余白を削除 */
+}
+
+.gymleader-image {
+    width: 500px;
+    height: 500px;
+    object-fit: cover; /* 画像のアスペクト比を維持しながらコンテンツボックスにフィットさせる */
+}
+
+.question-card {
+    display: flex;          /* Flexboxを有効にする */
+    flex-direction: column; /* 子要素を縦方向に配置 */
+    justify-content: center;/* 子要素を縦方向の中央に配置 */
+    align-items: center;    /* 子要素を横方向の中央に配置 */
+    width: 570px;
+    height: 235px;
+    flex-shrink: 0;
+    padding: 15px;          /* カード内部の余白 */
+    margin-bottom: 20px;    /* カード間の間隔 */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* カードに少し影をつける */
+    border-radius: 24px;
+    border: 6px solid #000;
+    background: linear-gradient(180deg, #B023E9 0%, #8546D4 100%);
+}
+
+.question-card p{
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.question-card textarea{
+    width: 80%;
+    height: 60%;
+    margin-top: 20px;
+    border-radius: 24px;
+    border: 6px solid #000;
 }

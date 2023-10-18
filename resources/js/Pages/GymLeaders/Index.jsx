@@ -17,7 +17,6 @@ const Index = ({ gymLeaders }) => {
         <div>
             <Navbar />
             <div className='gymleader-content'>
-                <h1>ジムリーダー</h1>
                 <div className="gym-leader-container">
                     {Object.values(groupedGymLeaders).map((leadersOfSameSkill) => (
                         <div key={leadersOfSameSkill[0].skill_id} className="gym-leader-skill-area">
@@ -25,7 +24,7 @@ const Index = ({ gymLeaders }) => {
                             <div className="gym-leader-cards">
                                 {leadersOfSameSkill.map((gymLeader) => (
                                     <div key={gymLeader.id} className="gym-leader-card">
-                                        <img src="/storage/app/public/GymleaderIcon.png" alt="Gym Leader Icon" />
+                                        {/* <img src="GymleaderIcon.png" alt="Gym Leader Icon" /> */}
                                         <a href={route('gymleaders.show', gymLeader.id)}>
                                             <p>{gymLeader.name}</p>
                                         </a>
