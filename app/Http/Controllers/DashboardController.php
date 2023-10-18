@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\UserGymLeader;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
@@ -24,7 +26,12 @@ class DashboardController extends Controller
         }
         Log::debug($pendingRecords);
 
-        return inertia('Dashboard', ['pendingRecords' => $pendingRecords]);
+        $tags = Tag::all();
+
+        return inertia('Dashboard', [
+            'pendingRecords' => $pendingRecords,
+            'tags' => $tags
+        ]);
     }
 
     // App\Http\Controllers\DashboardController.php
