@@ -17,4 +17,21 @@ class UserGymLeader extends Model
         'success_at',
         // 他のカラムもマスアサインメントを許可したい場合はここに追加
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function gymLeader()
+    {
+        return $this->belongsTo(GymLeader::class, 'gym_leader_id');
+    }
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class);
+    }
+
+
 }

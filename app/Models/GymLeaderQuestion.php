@@ -11,6 +11,14 @@ class GymLeaderQuestion extends Model
 
     public function gymLeader()
     {
-        return $this->belongsTo(GymLeader::class);
+        return $this->belongsTo(GymLeader::class, 'gym_leader_id');
     }
+
+    public function answers()
+    {
+        return $this->hasMany(UserAnswer::class, 'gym_leader_question_id', 'id');
+        // ここで 'question_id' は UserAnswer テーブルの外部キーカラム名です。
+        // 'id' は GymLeaderQuestion の主キーです。
+    }
+
 }

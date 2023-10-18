@@ -13,4 +13,10 @@ class UserAnswer extends Model
         'gym_leader_question_id',
         'answer_text'
     ];
+
+    public function gymLeaderQuestion()
+    {
+        return $this->belongsTo(GymLeaderQuestion::class, 'gym_leader_question_id');
+    }
+
 }
