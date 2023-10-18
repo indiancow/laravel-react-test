@@ -41,7 +41,7 @@ const Index = ({ issues }) => {
                                     <h3 className='index-title'>{issue.tag}</h3> {/* この行を追加 */}
                                     <p className='issue-index-card-username'>{issue.author}</p> {/* この行を追加 */}
                                     <p>{issue.description}</p>
-                                    <button onClick={() => handleFeedbackClick(issue)}>フィードバック</button>
+                                    <button onClick={() => handleFeedbackClick(issue)} className="timeline-button">フィードバック</button>
                                 </div>
                             </div>
                         ))}
@@ -61,26 +61,24 @@ const Index = ({ issues }) => {
                                     <h3 className='index-title'>{issue.tag}</h3>
                                     <p className='issue-index-card-username'> {issue.author}</p> 
                                     <p>{issue.description}</p>
-                                    <button onClick={() => handleFeedbackClick(issue)}>フィードバック</button>
+                                    <button onClick={() => handleFeedbackClick(issue)} className="timeline-button">フィードバック</button>
                                 </div>
                             </div>
                         ))}
                     </div>
                 </div>
-            
-                
-                {/* All Text Issues Section */}
-                <h2 className='issue-index-title'>クエスト</h2>
-                <div className="text-issues" style={{ maxHeight: '400px', overflowY: 'scroll' }}>
+                <div className="timeline-container">
+                    <h2 className='issue-index-title'>クエスト</h2>
                     {issues.data.filter(issue => issue.videoUrl === defaultStorageUrl).map((issue) => (
-                        <div className='issue-index-card-text'>
-                            <h3 className='index-title'>{issue.tag}</h3> 
-                            <p className='issue-index-card-username'> {issue.author}</p> 
-                            <p>{issue.description}</p>
-                            <button onClick={() => handleFeedbackClick(issue)}>フィードバック</button>
+                        <div className="timeline-card">
+                            <h3 className="timeline-title">{issue.tag}</h3> 
+                            <p className="timeline-username">@{issue.author}</p> 
+                            <p className="timeline-description">{issue.description}</p>
+                            <button className="timeline-button" onClick={() => handleFeedbackClick(issue)}>フィードバック</button>
                         </div>
                     ))}
                 </div>
+
             </div>
             {showModal && selectedIssue && (
                 <Modal show={showModal} onClose={() => setShowModal(false)}>

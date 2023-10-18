@@ -52,7 +52,7 @@
     box-shadow: 4px 4px 8px 3px rgba(0, 97, 152, 0.15);
     display: flex;
     width: 1140px;
-    height: 320px;
+    height: 350px;
     flex-direction: column;
     align-items: center;
     flex-shrink: 0;
@@ -86,8 +86,8 @@
 }
 
 .issue-index-card{
-    width: 236px;
-    height: 223px;
+    width: 240px;
+    height: 270px;
     flex-shrink: 0;
     border-radius: 12px;
     border: 1px solid #D3D3D3;
@@ -118,6 +118,64 @@
 .issue-index-card-username{
     color: #04B400;
 }
+
+
+/* タイムラインのコンテナスタイル */
+.timeline-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+    background-color: #e9ecef; /* 明るい背景色 */
+    border-radius: 15px;
+}
+
+/* 各カードのスタイル */
+.timeline-card {
+    background-color: #fff; /* 白背景 */
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da; /* 境界線の色 */
+}
+
+.timeline-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color:#A13DE5;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.timeline-username {
+    font-size: 16px;
+    color: #04B400;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.timeline-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* ボタンのスタイル */
+.timeline-button {
+    padding: 10px 15px;
+    background: linear-gradient(180deg, #B023E9 0%, #8546D4 100%); /* 青色のボタン背景 */
+    font-weight: 700;
+    color:#FFF;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.timeline-button:hover {
+    background-color: #FF4C00; /* ホバー時の青色 */
+}
+
+
 /* mypage */
 
 .mycard-left-section, .mycard-right-section {
