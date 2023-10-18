@@ -8,6 +8,123 @@
     background: linear-gradient(98deg, #A13DE5 32.76%, #4E75B9 73.01%);
 }
 
+/* dashboard */
+
+.record-container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    align-items: center; 
+}
+
+.record-card {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.record-header{
+    display: flex;
+}
+
+.record-details {
+    margin-bottom: 1rem;
+}
+
+.record-actions {
+    margin-bottom: 1rem;
+    text-align: right;
+    align-items: center;
+}
+
+.record-username{
+    color: var(--black, #000);
+    font-family: Inter;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.record-gymleader{
+    color: #04B400;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: 0.5px;
+}
+
+.btn-clear, .btn-fail {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-clear {
+    background: linear-gradient(93deg, #4D54FF 10.41%, #0042A5 97.36%);
+    color: white;
+}
+
+.btn-clear:hover {
+    background: #c53030;
+}
+
+.btn-fail {
+    background: linear-gradient(93deg, #000118 10.41%, #767676 97.36%);
+    color: white;
+}
+
+.btn-fail:hover {
+    background: linear-gradient(180deg, #B023E9 0%, #8546D4 100%);
+}
+
+.dashboard-question-area{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.dashboard-question-card {
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 30%;
+    flex-direction: column; /* 子要素を縦方向に配置 */
+    justify-content: center;/* 子要素を縦方向の中央に配置 */
+    align-items: center;    /* 子要素を横方向の中央に配置 */
+    flex-shrink: 0;
+    margin-bottom: 20px;    /* カード間の間隔 */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* カードに少し影をつける */
+    border-radius: 24px;
+    border: 6px solid #000;
+    background: linear-gradient(180deg, #B023E9 0%, #8546D4 100%);
+}
+
+.answer-card {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.25rem;
+    background-color: #ffffff;
+}
+
+.answer-card p{
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 14.408px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+
 .dashboard-subtitle{
     color: #FFF;
     text-align: center;
@@ -15,6 +132,16 @@
     font-size: 24px;
     font-style: normal;
     font-weight: 700;
+    line-height: normal;
+}
+
+.dashboard-question-text{
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
     line-height: normal;
 }
 
