@@ -3,9 +3,12 @@
 namespace App\Listeners;
 
 use App\Events\GymLeaderChallenged;
+use App\Models\GymLeaderQuestion;
 use App\Models\User;
+use App\Models\UserGymLeader;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 
 class NotifyManagersAboutNewAnswer
 {
@@ -22,16 +25,32 @@ class NotifyManagersAboutNewAnswer
      */
     public function handle(GymLeaderChallenged $event): void
     {
-        $answer = $event->user_answer;
-        dd($answer);
-        $managers = User::where('is_manager', 1)->where('id', '<>', $answer->user_id)->get();
+        foreach ($event->user_answers as $answer) {
+            Log::debug($answer);
+            $question = GymLeaderQuestion::find($answer->gym_leader_question_id);
+            $gymLeaderId = $question->gym_leader_id;
+            // 既存のデータを検索
+            $existingRecord = UserGymLeader::where('user_id', $answer->user_id)
+                                            ->where('gym_leader_id', $gymLeaderId)// この部分は、適切なジムリーダーのIDを取得するように変更してください。
+                                            ->first();
 
-        // foreach ($managers as $manager) {
-        //     Notification::create([
-        //         'user_id' => $manager->id,
-        //         'content' => "New answer submitted by {$answer->user->name}",
-        //         // 他の必要なフィールド...
-        //     ]);
-        // }
+            if ($existingRecord) {
+                // データが既に存在する場合、attempt_countを+1する
+                $existingRecord->increment('attempt_count');
+            } else {
+                // 新しいレコードを作成する
+                UserGymLeader::create([
+                    'user_id' => $answer->user_id,
+                    'gym_leader_id' => $gymLeaderId, // この部分は、適切なジムリーダーのIDを取得するように変更してください。
+                    'status' => 'pending', // この値は適切に設定してください
+                    'manager_approval' => 0,
+                    'attempt_count' => 1,
+                    'success_at' => null
+                ]);
+            }
+            
+        }
+
+        Log::debug($event->user_answers);
     }
 }
