@@ -136,6 +136,54 @@
     align-items: center; 
 }
 
+.toppage-quest{
+    margin-top: 40px;
+    margin-bottom: 100px;
+    width: 270px;
+    height: 110px;
+    flex-shrink: 0;
+    background: linear-gradient(97deg, #38D8EE 4.24%, rgba(56, 183, 238, 0.00) 98.61%);
+    border: 6.886px solid #000;
+    border-radius: 24px;
+    box-shadow: 
+        0px 4.59072px 4.59072px 0px rgba(0, 0, 0, 0.25) inset,
+        0px 4.590717792510986px 4.590717792510986px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000; /* Adjust this if you want a specific text color */
+    font-size: 16px; /* Adjust this if you want a specific font size */
+    transition: 0.3s; /* For a smoother hover effect */
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 27.544px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    z-index: 1; /* ボタンをSVGの後ろに配置 */
+}
+
+.toppage-quest:hover {
+    /* Add some hover effect if needed, for instance */
+    opacity: 0.9;
+}
+
+.toppage-quest-component{
+    display: flex;
+    justify-content: center;
+}
+
+.toppage-quest-component > svg {
+    position: absolute; /* SVGを絶対位置で配置 */
+    top: 50%; /* 上端から50%の位置に配置 */
+    left: 50%; /* 左端から50%の位置に配置 */
+    transform: translate(-50%, -50%); /* SVGの中心が指定された位置に来るように移動 */
+    z-index: 2; /* SVGをボタンの前面に配置 */
+}
+
+
 .dashboard-question-card {
     margin-top: 1rem;
     padding: 1rem;

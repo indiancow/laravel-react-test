@@ -23,8 +23,18 @@ export default function Dashboard({ auth, pendingRecords, tags }) {
                 headers: { 'Content-Type': 'application/json' }
             });
             if (response.ok) {
+                console.log(recordId)
                 alert('合格を送信しました。');
                 // Successfully updated. You might want to update the UI or redirect.
+            }
+            // ここでuser_skillのレベルを更新するAPIを呼び出す
+            const levelUpResponse = await fetch(`/api/user-skill/level-up`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' }
+            });
+            
+            if (!levelUpResponse.ok) {
+                console.error("Failed to level up the user skill.");
             } else {
                 console.error("Failed to clear the record.");
             }
@@ -105,9 +115,20 @@ export default function Dashboard({ auth, pendingRecords, tags }) {
         <div className='back-color'>
             <Navbar />
             <Head title="Dashboard" />
+            <div className='dashboard-subtitle'>
+                <h2 className='dashboard-subtitle'>
+                    チカラを合わせてセカイを救え！
+                </h2>
+            </div>
+            <ApplicationLogo />
 
             {/* クエスト作成ボタン */}
-            <button onClick={openModal}>クエスト作成</button>
+            <div className='toppage-quest-component'>
+            {/* <svg xmlns="http://www.w3.org/2000/svg" width="148" height="38" viewBox="0 0 148 38" fill="none">
+            <path d="M0.122314 13.7722C0.122314 6.166 6.28832 0 13.8945 0H133.253C140.859 0 147.025 6.166 147.025 13.7722V24.1013C147.025 31.7074 140.859 37.8734 133.253 37.8734H13.8945C6.28833 37.8734 0.122314 31.7074 0.122314 24.1013V13.7722Z" fill="black"/>
+            </svg> */}
+                <button className='toppage-quest' onClick={openModal}>クエスト作成</button>
+            </div>
 
             {/* モーダル */}
             {showModal && (
@@ -187,14 +208,6 @@ export default function Dashboard({ auth, pendingRecords, tags }) {
                     ))}
                 </div>
             )}
-
-            <div className='dashboard-subtitle'>
-                <h2 className='dashboard-subtitle'>
-                    チカラを合わせてセカイを救え！
-                </h2>
-            </div>
-
-            <ApplicationLogo />
         </div>
     );
 }

@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IssueController;
+use App\Http\Controllers\UserSkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,4 @@ Route::get('/s3-upload-url', [IssueController::class, 'getS3UploadUrl']);
 // routes/api.php
 Route::put('/clear/{id}', [DashboardController::class, 'clear']);
 Route::put('/fail/{id}', [DashboardController::class, 'fail']);
+Route::put('/user-skill/level-up', [UserSkillController::class, 'levelup']);
