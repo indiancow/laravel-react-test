@@ -55,7 +55,10 @@ class UserAnswerController extends Controller
         Log::info('finish event!');
 
         // 結果を表示または保存し、次のステップへ
-        return redirect()->route('gymleaders');
+        // return redirect()->route('gymleaders.index');
+        // 結果を表示または保存し、次のステップへ
+        return response()->json(['redirect_url' => route('gymleaders.index')]);
+
     }
 
     /**

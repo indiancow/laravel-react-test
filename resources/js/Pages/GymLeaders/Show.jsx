@@ -31,7 +31,10 @@ const Show = ({ gymLeader }) => {
             console.log(formData)
 
             const response = await axios.post(route('answers.store', gymLeader.id), formData);
-            console.log(response.data);
+            // console.log(response.data);
+            if (response.data.redirect_url) {
+                window.location.href = response.data.redirect_url;
+            }
         } catch (error) {
             console.error("Error:", error);
         }
