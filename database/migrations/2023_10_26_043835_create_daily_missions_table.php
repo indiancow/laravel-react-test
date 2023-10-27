@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('target_count');
-            $table->foreignId('skill_id')->constrained('rewards')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\DailyMission;
 use App\Models\GymLeader;
 use Illuminate\Database\Seeder;
 use Symfony\Component\Console\Question\Question;
@@ -26,6 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersSeeder::class);
         $this->call(UserSkillSeeder::class);
         $this->call(QuestionSeeder::class);
+        $this->call(RewardsTableSeeder::class);
+        $this->call(DailyMissionsTableSeeder::class);
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

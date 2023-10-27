@@ -34,6 +34,7 @@ const Show = ({ user, users, issues, feedbacks, userSkills, character }) => {
 
     const giverSkill = userSkills.find(skill => skill.skill.name === "Giver");
     const seekerSkill = userSkills.find(skill => skill.skill.name === "探求者");
+    const stoicSkill = userSkills.find(skill => skill.skill.name === "ストイック");
 
     const selectedCharacter = getCharacterBasedOnSkills(character, giverSkill?.level || 0, seekerSkill?.level || 0);
     // console.log(seekerSkill)
@@ -72,6 +73,11 @@ const Show = ({ user, users, issues, feedbacks, userSkills, character }) => {
                                         <p>{seekerSkill.skill.name}: Lv {seekerSkill.level}</p>
                                     </div>
                                 )}
+                                {stoicSkill && (
+                                    <div className='mypage-stoic-level'>
+                                        <p>{stoicSkill.skill.name}: Lv {stoicSkill.level}</p>
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className='mypage-username-card-rightarea'>
@@ -83,7 +89,7 @@ const Show = ({ user, users, issues, feedbacks, userSkills, character }) => {
                     <div className="card-container">
                         {/* それ以外のスキルを表示 */}
                         {userSkills.map((userSkill, index) => (
-                            userSkill.skill.name !== 'Giver' && userSkill.skill.name !== '探求者' && (
+                            userSkill.skill.name !== 'Giver' && userSkill.skill.name !== '探求者' && userSkill.skill.name !== 'ストイック' && (
                                 <div key={userSkill.id} className={`skill-card ${index % 2 === 0 ? 'left-card' : 'right-card'}`}>
                                     <div className='flex'>
                                         <div>
