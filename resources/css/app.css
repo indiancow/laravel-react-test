@@ -519,7 +519,7 @@
     line-height: normal;
 }
 
-.mypage-giver-level, .mypage-seeker-level{
+.mypage-giver-level, .mypage-seeker-level, .mypage-stoic-level{
     height: 60px;
     flex-shrink: 0;
 }
@@ -532,6 +532,13 @@
 }
 
 .mypage-seeker-level{
+    border-radius: 10.888px;
+    border: 2px solid #FFF;
+    background: linear-gradient(102deg, #007CC1 1.31%, #007B8C 100.39%);
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.mypage-stoic-level{
     border-radius: 10.888px;
     border: 2px solid #FFF;
     background: linear-gradient(102deg, #007CC1 1.31%, #007B8C 100.39%);
