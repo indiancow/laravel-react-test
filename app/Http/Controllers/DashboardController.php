@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DailyMission;
 use App\Models\Tag;
 use App\Models\UserGymLeader;
 use Illuminate\Http\Request;
@@ -24,13 +25,17 @@ class DashboardController extends Controller
                 ->where('status', 'pending')
                 ->get();
         }
-        Log::debug($pendingRecords);
+        // Log::debug($pendingRecords);
 
         $tags = Tag::all();
 
+        $dailyMissions = DailyMission::all();
+        Log::debug($dailyMissions);
+
         return inertia('Dashboard', [
             'pendingRecords' => $pendingRecords,
-            'tags' => $tags
+            'tags' => $tags,
+            'dailyMissions' => $dailyMissions,
         ]);
     }
 

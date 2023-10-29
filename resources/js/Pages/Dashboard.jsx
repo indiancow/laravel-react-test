@@ -7,7 +7,7 @@ import ApplicationLogo from '@/Components/ApplicationLogo';
 import axios from 'axios';
 import { Inertia } from '@inertiajs/inertia';
 
-export default function Dashboard({ auth, pendingRecords, tags }) {
+export default function Dashboard({ auth, pendingRecords, tags, dailyMissions }) {
     console.log(pendingRecords)
     const [description, setDescription] = useState('');
     const [tagId, setTagId] = useState('');
@@ -72,6 +72,13 @@ export default function Dashboard({ auth, pendingRecords, tags }) {
     const closeModal = () => {
         setShowModal(false);
     }
+
+    useEffect(() => {
+        if (showModal && tags.length > 0) {
+            setTagId(tags[0].id);
+            }
+        }, [showModal, tags]);
+        
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -81,7 +88,10 @@ export default function Dashboard({ auth, pendingRecords, tags }) {
         formData.append('tag_id', tagId);
         if (video) formData.append('video', video); // ビデオファイルも追加
 
+        // console.log(formData)
+        // console.log('ポスト直前')
         // FormDataを使用してPOSTリクエストを送信
+        // 一回、選択肢を選ばないとエラーになるので注意。
         Inertia.post('/issues', formData, {
             preserveState: true,
             only: ['tags'],
@@ -173,7 +183,7 @@ export default function Dashboard({ auth, pendingRecords, tags }) {
                     </div>
                 </div>
             )}
-
+            {/* manager gymleader check area */}
             {auth.user.is_manager == 1 && (
                 <div className="record-container">
                     {pendingRecords.map((record) => (
@@ -208,6 +218,20 @@ export default function Dashboard({ auth, pendingRecords, tags }) {
                     ))}
                 </div>
             )}
+            {/* daily mission area */}
+            <div className="daily-mission-container">
+                <h2>デイリーミッション</h2>
+                <div className="daily-mission-list">
+                    {dailyMissions.map((mission) => (
+                        <div key={mission.id} className="daily-mission-card">
+                            <h3>{mission.name}</h3>
+                            <p>{mission.description}</p>
+                            <p>目標回数: {mission.target_count}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
         </div>
     );
 }

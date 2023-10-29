@@ -41,6 +41,7 @@ class AddExperienceForIssue
         $userSkill->increment('experience', $experiencePoints);
 
         event(new UserLevelUp($userSkill));
+        
 
     }
 }
