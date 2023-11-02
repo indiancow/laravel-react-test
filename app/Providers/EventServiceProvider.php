@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Events\DailyMissionCompleted;
 use App\Events\IssueCreated;
 use App\Listeners\AddExperienceForIssue;
 use App\Events\FeedbackCreated;
@@ -13,6 +14,7 @@ use App\Listeners\GymLeaderEventListener;
 use App\Listeners\IncrementDailyMissionForFeedback;
 use App\Listeners\IncrementDailyMissionForIssue;
 use App\Listeners\NotifyManagersAboutNewAnswer;
+use App\Listeners\stoicLevelUp;
 use App\Listeners\UpdateUserLevel;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -33,20 +35,18 @@ class EventServiceProvider extends ServiceProvider
 
         # make issues
         IssueCreated::class => [
-            AddExperienceForIssue::class
-        ],
-
-        IssueCreated::class => [
+            AddExperienceForIssue::class,
             IncrementDailyMissionForIssue::class
         ],
 
         # make feedback and give experience
         FeedbackCreated::class => [
             AddExperienceForFeedback::class,
+            IncrementDailyMissionForFeedback::class,
         ],
 
-        FeedbackCreated::class => [
-            IncrementDailyMissionForFeedback::class,
+        DailyMissionCompleted::class => [
+            stoicLevelUp::class
         ],
 
         UserLevelUp::class => [
