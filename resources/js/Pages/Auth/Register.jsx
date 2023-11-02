@@ -12,6 +12,7 @@ export default function Register() {
         name: '',
         email: '',
         password: '',
+        is_manager: false,
         password_confirmation: '',
     });
 
@@ -99,6 +100,19 @@ export default function Register() {
                     />
 
                     <InputError message={errors.password_confirmation} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <label htmlFor="is_manager" className="inline-flex items-center">
+                        <input
+                            id="is_manager"
+                            type="checkbox"
+                            className="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            checked={data.is_manager}
+                            onChange={(e) => setData('is_manager', e.target.checked)}
+                        />
+                        <span className="ml-2 text-sm text-gray-600">Is Manager</span>
+                    </label>
                 </div>
 
                 <div className="flex items-center justify-end mt-4">
