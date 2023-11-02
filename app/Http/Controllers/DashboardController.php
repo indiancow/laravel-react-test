@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DailyMission;
 use App\Models\Tag;
+use App\Models\UserDailyMission;
 use App\Models\UserGymLeader;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -24,13 +26,30 @@ class DashboardController extends Controller
                 ->where('status', 'pending')
                 ->get();
         }
-        Log::debug($pendingRecords);
+        // Log::debug($pendingRecords);
 
         $tags = Tag::all();
 
+        $dailyMissions = DailyMission::all();
+        // Log::debug($dailyMissions);
+
+        $userId = auth()->id();
+        $userDailyMissions = UserDailyMission::where('user_id', $userId)
+        ->get()
+        ->mapWithKeys(function ($item) {
+            return [$item['daily_mission_id'] => $item['current_count']];
+        });
+
+        $dailyMissions->each(function ($mission) use ($userDailyMissions) {
+            $mission->current_count = $userDailyMissions[$mission->id] ?? 0;
+        });
+
+        Log::debug($dailyMissions);
+
         return inertia('Dashboard', [
             'pendingRecords' => $pendingRecords,
-            'tags' => $tags
+            'tags' => $tags,
+            'dailyMissions' => $dailyMissions,
         ]);
     }
 

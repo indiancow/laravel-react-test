@@ -9,6 +9,8 @@ class UserDailyMission extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['user_id', 'daily_mission_id', 'current_count', 'date'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -18,5 +20,5 @@ class UserDailyMission extends Model
     {
         return $this->belongsTo(DailyMission::class);
     }
-    
+
 }
