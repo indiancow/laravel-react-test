@@ -8,6 +8,7 @@ use App\Models\Feedback;
 use App\Models\Issue;
 use Inertia\Inertia;
 use App\Events\FeedbackCreated;
+use Illuminate\Support\Facades\Log;
 
 use function Termwind\render;
 
@@ -48,6 +49,7 @@ class FeedbackController extends Controller
             'content' => $validated['content'],
         ]);
 
+        // dd($feedback);
         # give experience
         event(new FeedbackCreated($feedback));
 

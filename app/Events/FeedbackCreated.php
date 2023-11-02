@@ -21,9 +21,11 @@ class FeedbackCreated
      */
 
     public $feedback;
+    public $userId;
 
     public function __construct(Feedback $feedback)
     {
+        $this->userId = $feedback->user_id;
         $this->feedback = $feedback;
         // dd($feedback);
     }
