@@ -184,7 +184,7 @@ export default function Dashboard({ auth, pendingRecords, tags, dailyMissions })
                 </div>
             )}
             {/* manager gymleader check area */}
-            {auth.user.is_manager == 1 && (
+            {auth.user.is_manager === 1 && pendingRecords.some(record => record.user.id !== auth.user.id) && (
                 <div className="record-container">
                     {pendingRecords.map((record) => (
                         record.user.id !== auth.user.id ? (
@@ -219,7 +219,7 @@ export default function Dashboard({ auth, pendingRecords, tags, dailyMissions })
                 </div>
             )}
             {/* daily mission area */}
-            <div className="daily-mission-container">
+            {/* <div className="daily-mission-container">
                 <h2>デイリーミッション</h2>
                 <div className="daily-mission-list">
                     {dailyMissions.map((mission) => (
@@ -230,7 +230,36 @@ export default function Dashboard({ auth, pendingRecords, tags, dailyMissions })
                         </div>
                     ))}
                 </div>
+            </div> */}
+            <div className="daily-mission-container">
+                <h2>デイリーミッション</h2>
+                <div className="daily-mission-list">
+                    {dailyMissions.map((mission) => (
+                        <div key={mission.id} className="daily-mission-card">
+                            <h3>{mission.name}</h3>
+                            <p>{mission.description}</p>
+                            <p>目標回数: {mission.target_count}</p>
+                            <p>現在の進捗: {mission.current_count}</p>
+                            <div className="progress-bar-container">
+                                <div 
+                                    className="progress-bar" 
+                                    style={{
+                                        width: `${Math.min(mission.current_count / mission.target_count, 1) * 100}%`,
+                                        backgroundColor: mission.current_count >= mission.target_count ? 'green' : 'orange'
+                                    }}
+                                />
+                            </div>
+                            {mission.current_count >= mission.target_count ? (
+                                <p className="mission-completed">ミッション達成！</p>
+                            ) : (
+                                <p className="mission-progress">もう少しで達成！</p>
+                            )}
+                        </div>
+                    ))}
+                </div>
             </div>
+
+
 
         </div>
     );

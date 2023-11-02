@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Events\IssueCreated;
+use App\Events\UserLevelUp;
 use Aws\S3\Exception\S3Exception;
 use Aws\S3\S3Client;
 use Illuminate\Support\Facades\Log;
@@ -86,7 +87,6 @@ class IssueController extends Controller
         $issue->save();
         // dd($issue);
         event(new IssueCreated($issue->user_id, $issue->id, $issue->tag_id));
-
         // return redirect()->route('issues.index');
     }
 
