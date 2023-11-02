@@ -10,6 +10,7 @@ use App\Events\GymLeaderEvent;
 use App\Events\UserLevelUp;
 use App\Listeners\AddExperienceForFeedback;
 use App\Listeners\GymLeaderEventListener;
+use App\Listeners\IncrementDailyMissionForFeedback;
 use App\Listeners\IncrementDailyMissionForIssue;
 use App\Listeners\NotifyManagersAboutNewAnswer;
 use App\Listeners\UpdateUserLevel;
@@ -42,6 +43,10 @@ class EventServiceProvider extends ServiceProvider
         # make feedback and give experience
         FeedbackCreated::class => [
             AddExperienceForFeedback::class,
+        ],
+
+        FeedbackCreated::class => [
+            IncrementDailyMissionForFeedback::class,
         ],
 
         UserLevelUp::class => [
