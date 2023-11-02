@@ -38,7 +38,7 @@ class stoicLevelUp
         // すべてのデイリーミッションが達成されているか確認
         $allMissionsCompleted = $userDailyMissions->every(function ($userDailyMission) {
             $dailyMission = DailyMission::find($userDailyMission->daily_mission_id);
-            return $userDailyMission->current_count >= $dailyMission->target_count;
+            return $userDailyMission->current_count == $dailyMission->target_count;
         });
 
         if ($allMissionsCompleted) {

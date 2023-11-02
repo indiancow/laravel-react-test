@@ -42,6 +42,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'is_manager' => $request->is_manager ?? 0,
         ]);
 
         $skills = Skill::all();
