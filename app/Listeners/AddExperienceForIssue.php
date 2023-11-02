@@ -31,7 +31,7 @@ class AddExperienceForIssue
 
         // 探求者スキルのIDを取得（ここではスキル名が'探求者'であると仮定しています）
         $explorerSkillId = Skill::where('name', '探求者')->first()->id;
-
+        // dd($explorerSkillId);
         $userSkill = User_Skill::firstOrCreate([
             'user_id' => $userId,
             'skill_id' => $explorerSkillId,

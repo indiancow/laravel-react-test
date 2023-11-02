@@ -15,7 +15,7 @@ class DailyMissionsTableSeeder extends Seeder
     {
         DB::table('daily_missions')->insert([
             ['name' => 'フィードバック投稿', 'description' => 'フィードバックを2回投稿しよう！', 'target_count' => 2],
-            ['name' => '課題投稿', 'description' => '課題を1回投稿しよう！', 'target_count' => 1],
+            ['name' => '課題投稿', 'description' => '課題を2回投稿しよう！', 'target_count' => 2],
             // 他のデイリーミッションも同様に追加
         ]);
     }
