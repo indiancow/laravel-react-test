@@ -58,8 +58,19 @@
     margin: 0 auto;
     padding: 0 2rem;
     align-items: center; 
-    height: 50vh; /* ビューポートの高さの50% */
+    height: 40vh; /* ビューポートの高さの50% */
     overflow-y: auto; /* 必要に応じて垂直スクロールを有効にする */
+}
+
+.record-container h2, .daily-mission-container h2{
+    color: #000;
+    font-family: Inter;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 .record-card {
@@ -259,7 +270,7 @@
 }
 
 .daily-mission-container {
-    max-width: 800px;
+    max-width: 90%;
     margin: 0 auto;
 }
 
@@ -273,31 +284,100 @@
     border: 1px solid #ccc;
     padding: 15px;
     border-radius: 8px;
-    width: 100%;
+    width: calc(50% - 20px); /* 2カードを一列に収めるための横幅に調整します */
 }
+
+.daily-mission-mark {
+    background-color: black;
+    color: white;
+    border-radius: 10px; /* 角を丸める */
+    padding: 10px 20px; /* 上下左右の余白 */
+    margin: 10px 0; /* 上下のマージン */
+    width: fit-content; /* コンテンツの幅に合わせる */
+    box-sizing: border-box; /* パディングを含めたサイズでボックスサイズを計算 */
+    text-align: center; /* テキストを中央揃えに */
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+.daily_mission_img{
+    margin: 0 auto;
+}
+
+.mission-description {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    color: #000;
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+/* 進捗情報にスタイルを適用 */
+.mission-progress-info {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    color: #000;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
 
 .progress-bar-container {
     background-color: #e0e0e0;
     border-radius: 8px;
     margin-top: 10px;
-    height: 20px;
+    height: 30px;
+    position: relative;
+    border: 4px solid #000;
 }
 
 .progress-bar {
     height: 100%;
-    border-radius: 8px;
+    background: linear-gradient(91deg, #A13DE5 6.48%, #3F5DFF 96.36%);
+    position: relative; /* テキストの位置指定の基点とする */
+}
+
+.progress-percentage {
+    position: absolute; /* progress-bar-containerに対して絶対位置を指定 */
+    left: 50%; /* 左端から50%の位置に */
+    transform: translateX(-50%); /* 自身の幅の50%分左にずらす */
+    white-space: nowrap; /* テキストを折り返さない */
+    color: white; /* テキストの色 */
+    padding: 2px 5px; /* テキストの周りの余白 */
+    border-radius: 3px; /* 角を少し丸くする */
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
 }
 
 .mission-completed {
-    color: green;
+    color: red;
     font-weight: bold;
     margin-top: 10px;
+    text-align: center;
+    font-size: 20px;
 }
 
 .mission-progress {
     color: orange;
     font-weight: bold;
     margin-top: 10px;
+    text-align: center;
+    font-size: 20px;
 }
 
 
@@ -307,6 +387,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     min-height: 100vh; 
     width: 100%; /* 必要に応じて */
 }

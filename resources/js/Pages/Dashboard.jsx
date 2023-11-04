@@ -122,70 +122,73 @@ export default function Dashboard({ auth, pendingRecords, tags, dailyMissions })
     };
 
     return (
-        <div className='back-color'>
-            <Navbar />
-            <Head title="Dashboard" />
-            <div className='dashboard-subtitle'>
-                <h2 className='dashboard-subtitle'>
-                    チカラを合わせてセカイを救え！
-                </h2>
-            </div>
-            <ApplicationLogo />
-
-            {/* クエスト作成ボタン */}
-            <div className='toppage-quest-component'>
-            {/* <svg xmlns="http://www.w3.org/2000/svg" width="148" height="38" viewBox="0 0 148 38" fill="none">
-            <path d="M0.122314 13.7722C0.122314 6.166 6.28832 0 13.8945 0H133.253C140.859 0 147.025 6.166 147.025 13.7722V24.1013C147.025 31.7074 140.859 37.8734 133.253 37.8734H13.8945C6.28833 37.8734 0.122314 31.7074 0.122314 24.1013V13.7722Z" fill="black"/>
-            </svg> */}
-                <button className='toppage-quest' onClick={openModal}>クエスト作成</button>
-            </div>
-
-            {/* モーダル */}
-            {showModal && (
-                <div className='overlay'>
-                    <div className="quest-modal over">
-                        <h2>クエスト作成</h2>
-                        <form onSubmit={handleSubmit} className='issue-form'>
-                            <div className='flex justify-center'>
-                                <label>
-                                    クエストジャンル:
-                                    <select value={tagId} onChange={(e) => setTagId(e.target.value)}>
-                                        {tags.map(tag => (
-                                            <option key={tag.id} value={tag.id}>{tag.name}</option>
-                                        ))}
-                                    </select>
-                                </label>
-                            </div>
-                            <div className='flex justify-center'>
-                                <label>
-                                    クエストビデオ:
-                                    <input 
-                                        type="file" 
-                                        onChange={(e) => setVideo(e.target.files[0])} 
-                                    />
-                                </label>
-                            </div>
-                            <div className='flex justify-center'>
-                                <label>
-                                    クエスト内容:
-                                    <textarea 
-                                        value={description} 
-                                        onChange={(e) => setDescription(e.target.value)} 
-                                    />
-                                </label>
-                            </div>
-                            <div className='flex justify-center'>
-                                <button type="submit" >Submit</button>
-                            </div>
-                            
-                        </form>
-                        <button onClick={closeModal}>閉じる</button>
-                    </div>
+        <div>
+            <div className='back-color'>
+                <Navbar />
+                <Head title="Dashboard" />
+                <div className='dashboard-subtitle'>
+                    <h2 className='dashboard-subtitle'>
+                        チカラを合わせてセカイを救え！
+                    </h2>
                 </div>
-            )}
+                <ApplicationLogo />
+
+                {/* クエスト作成ボタン */}
+                <div className='toppage-quest-component'>
+                {/* <svg xmlns="http://www.w3.org/2000/svg" width="148" height="38" viewBox="0 0 148 38" fill="none">
+                <path d="M0.122314 13.7722C0.122314 6.166 6.28832 0 13.8945 0H133.253C140.859 0 147.025 6.166 147.025 13.7722V24.1013C147.025 31.7074 140.859 37.8734 133.253 37.8734H13.8945C6.28833 37.8734 0.122314 31.7074 0.122314 24.1013V13.7722Z" fill="black"/>
+                </svg> */}
+                    <button className='toppage-quest' onClick={openModal}>クエスト作成</button>
+                </div>
+
+                {/* モーダル */}
+                {showModal && (
+                    <div className='overlay'>
+                        <div className="quest-modal over">
+                            <h2>クエスト作成</h2>
+                            <form onSubmit={handleSubmit} className='issue-form'>
+                                <div className='flex justify-center'>
+                                    <label>
+                                        クエストジャンル:
+                                        <select value={tagId} onChange={(e) => setTagId(e.target.value)}>
+                                            {tags.map(tag => (
+                                                <option key={tag.id} value={tag.id}>{tag.name}</option>
+                                            ))}
+                                        </select>
+                                    </label>
+                                </div>
+                                <div className='flex justify-center'>
+                                    <label>
+                                        クエストビデオ:
+                                        <input 
+                                            type="file" 
+                                            onChange={(e) => setVideo(e.target.files[0])} 
+                                        />
+                                    </label>
+                                </div>
+                                <div className='flex justify-center'>
+                                    <label>
+                                        クエスト内容:
+                                        <textarea 
+                                            value={description} 
+                                            onChange={(e) => setDescription(e.target.value)} 
+                                        />
+                                    </label>
+                                </div>
+                                <div className='flex justify-center'>
+                                    <button type="submit" >Submit</button>
+                                </div>
+                                
+                            </form>
+                            <button onClick={closeModal}>閉じる</button>
+                        </div>
+                    </div>
+                )}
+            </div>
             {/* manager gymleader check area */}
             {auth.user.is_manager === 1 && pendingRecords.some(record => record.user.id !== auth.user.id) && (
                 <div className="record-container">
+                    <h2>営業ダンジョン 回答内容</h2>
                     {pendingRecords.map((record) => (
                         record.user.id !== auth.user.id ? (
                         <div key={record.id} className="record-card">
@@ -236,10 +239,11 @@ export default function Dashboard({ auth, pendingRecords, tags, dailyMissions })
                 <div className="daily-mission-list">
                     {dailyMissions.map((mission) => (
                         <div key={mission.id} className="daily-mission-card">
-                            <h3>{mission.name}</h3>
-                            <p>{mission.description}</p>
-                            <p>目標回数: {mission.target_count}</p>
-                            <p>現在の進捗: {mission.current_count}</p>
+                            <h3 className='daily-mission-mark'>デイリーミッション</h3>
+                            <img className='daily_mission_img' src="http://localhost/storage/dailymission.png" alt="" />
+                            {/* <h3>{mission.name}</h3> */}
+                            <p className="mission-description">{mission.description}</p>
+                            <p className="mission-progress-info">進捗度: 現在{mission.current_count}/目標{mission.target_count}</p>
                             <div className="progress-bar-container">
                                 <div 
                                     className="progress-bar" 
@@ -247,7 +251,9 @@ export default function Dashboard({ auth, pendingRecords, tags, dailyMissions })
                                         width: `${Math.min(mission.current_count / mission.target_count, 1) * 100}%`,
                                         backgroundColor: mission.current_count >= mission.target_count ? 'green' : 'orange'
                                     }}
-                                />
+                                >
+                                    <span className="progress-percentage">{`${Math.round(Math.min(mission.current_count / mission.target_count, 1) * 100)}%`}</span>
+                                </div>
                             </div>
                             {mission.current_count >= mission.target_count ? (
                                 <p className="mission-completed">ミッション達成！</p>
