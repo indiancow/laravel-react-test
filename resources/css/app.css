@@ -614,9 +614,11 @@
     margin-bottom: 15px;
     padding: 15px;
     border-radius: 5px; /* 角を少し丸める */
+    display: flex;
+    align-items: center;
 }
 
-.issue-card h3, .feedback-card h3{
+.issue-title, .feedback-title{
     color: #FFF;
     font-family: Inter;
     font-size: 24px;
@@ -624,22 +626,34 @@
     font-weight: 700;
     line-height: normal;
     margin-bottom: 10px;
+    width: 30%;
+    align-items: center;
+    text-align: center;
 }
 
-.issue-card p, .feedback-card p{
+.issue-content, .feedback-content{
     color: #FFF;
     font-family: Inter;
     font-size: 12px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    margin-bottom: 5px; 
+    width: 70%; 
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.issue-details {
-    text-align: right; /* Align text to the right within the issue details */
+.feedback-text{
+    width: 70%;
 }
 
+.feedbacked-by{
+    width: 30%;
+}
 
 .mypage-bgc{
     background: linear-gradient(114deg, #401144 8.64%, #1A0E43 99.99%);

@@ -1,0 +1,1 @@
+import{j as s}from"./app-056778df.js";function o(t){return s.jsx("div",{className:"flex items-center justify-center",children:s.jsx("img",{src:"http://localhost/storage/20230831_feedo_logo_black@4x.png",className:"w-1/4",alt:""})})}export{o as A};
