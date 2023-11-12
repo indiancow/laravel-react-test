@@ -149,7 +149,7 @@ export default function Dashboard({ auth, pendingRecords, tags, dailyMissions })
                             <form onSubmit={handleSubmit} className='issue-form'>
                                 <div className='flex justify-center'>
                                     <label>
-                                        クエストジャンル:
+                                        ジャンル
                                         <select value={tagId} onChange={(e) => setTagId(e.target.value)}>
                                             {tags.map(tag => (
                                                 <option key={tag.id} value={tag.id}>{tag.name}</option>
@@ -159,7 +159,7 @@ export default function Dashboard({ auth, pendingRecords, tags, dailyMissions })
                                 </div>
                                 <div className='flex justify-center'>
                                     <label>
-                                        クエストビデオ:
+                                        動画
                                         <input 
                                             type="file" 
                                             onChange={(e) => setVideo(e.target.files[0])} 
@@ -168,7 +168,7 @@ export default function Dashboard({ auth, pendingRecords, tags, dailyMissions })
                                 </div>
                                 <div className='flex justify-center'>
                                     <label>
-                                        クエスト内容:
+                                        内容
                                         <textarea 
                                             value={description} 
                                             onChange={(e) => setDescription(e.target.value)} 
@@ -176,11 +176,11 @@ export default function Dashboard({ auth, pendingRecords, tags, dailyMissions })
                                     </label>
                                 </div>
                                 <div className='flex justify-center'>
-                                    <button type="submit" >Submit</button>
+                                    <button className='issue-button' type="submit" >送信</button>
                                 </div>
                                 
                             </form>
-                            <button onClick={closeModal}>閉じる</button>
+                            <button onClick={closeModal} className='issue-button'>閉じる</button>
                         </div>
                     </div>
                 )}
