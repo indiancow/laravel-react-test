@@ -712,30 +712,79 @@
     line-height: normal;
 }
 
-.mypage-giver-level, .mypage-seeker-level, .mypage-stoic-level{
+.mypage-giver-level,
+.mypage-seeker-level,
+.mypage-stoic-level{
+    display: flex; /* Flexboxを有効化 */
+    /* flex-direction: column; 子要素を縦方向に並べる */
+    /* justify-content: center; 子要素を縦軸で中央に配置 */
+    /* align-items: center; */
     height: 60px;
     flex-shrink: 0;
+    /* padding: 30px; */
+    border-radius: 10.888px;
+    border: 2px solid #FFF;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .mypage-giver-level{
-    border-radius: 10.888px;
-    border: 2px solid #FFF;
+    margin-top: 20px;
     background: linear-gradient(102deg, #5956DC 1.32%, #6B3ECF 100.39%);
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .mypage-seeker-level{
-    border-radius: 10.888px;
-    border: 2px solid #FFF;
     background: linear-gradient(102deg, #007CC1 1.31%, #007B8C 100.39%);
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .mypage-stoic-level{
-    border-radius: 10.888px;
-    border: 2px solid #FFF;
     background: linear-gradient(102deg, #007CC1 1.31%, #007B8C 100.39%);
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.skill-text{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 50%;
+}
+
+.skill-name{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    align-items: center;
+    /* margin-left: 20px; */
+}
+
+.levels-container{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.level-text,
+.skill-max{
+    font-size: 16px;
+}
+
+.skill-level{
+    font-weight: 900;
+    font-size: 32px;
+}
+
+.skill-progress-container{
+    width: 50%; /* コンテナの幅 */
+    background-color: #ddd; /* 背景色 */
+    border: 4px solid black;
+    border-radius: 5px; /* 角の丸み */
+    margin: 15px;
+}
+
+.skill-progress-bar {
+    height: 100%;
+    background: linear-gradient(91deg, #A13DE5 6.48%, #3F5DFF 96.36%);
+    /* border-radius: 5px; 角の丸み */
+    transition: width 0.3s ease-in-out; /* 幅の変化にアニメーションを適用 */
 }
 
 .mypage-username{
@@ -766,7 +815,10 @@
 .giver-seeker-level{
     margin-top: 5px;
     width: 70%;
-}
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 各要素間に20pxの隙間 */
+    }
 
 .skill-card {
     flex: 0 0 calc(50% - 10px); /* 2つのカードの幅を50%未満にして、マージン分を引く */

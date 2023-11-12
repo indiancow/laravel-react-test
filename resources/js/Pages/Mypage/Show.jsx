@@ -63,19 +63,63 @@ const Show = ({ user, users, issues, feedbacks, userSkills, character }) => {
                             )}
                             {/* Giver と 探求者 のスキルを表示 */}
                             <div className='giver-seeker-level'>
+                                {/* Giver Level */}
                                 {giverSkill && (
                                     <div className='mypage-giver-level'>
-                                        <p>{giverSkill.skill.name}: Lv {giverSkill.level}</p>
+                                        <div className='flex skill-text'>
+                                            <p className='skill-name'>{giverSkill.skill.name}</p>
+                                            <div className='levels-container'>
+                                                <p className='level-text'>Lv. </p>
+                                                <p className='skill-level'>{giverSkill.level}</p>
+                                                <p className='skill-max'>/100</p>
+                                            </div>
+                                        </div>
+                                        <div className='skill-progress-container'>
+                                            <div 
+                                                className='skill-progress-bar' 
+                                                style={{ width: `${(giverSkill.level / 100) * 100}%` }}
+                                            ></div>
+                                        </div>
                                     </div>
                                 )}
+
+                                {/* Seeker Level */}
                                 {seekerSkill && (
                                     <div className='mypage-seeker-level'>
-                                        <p>{seekerSkill.skill.name}: Lv {seekerSkill.level}</p>
+                                        <div className='flex skill-text'>
+                                            <p className='skill-name'>{seekerSkill.skill.name}</p>
+                                            <div className='levels-container'>
+                                                <p className='level-text'>Lv. </p>
+                                                <p className='skill-level'>{seekerSkill.level}</p>
+                                                <p className='skill-max'>/100</p>
+                                            </div>
+                                        </div>
+                                        <div className='skill-progress-container'>
+                                            <div 
+                                                className='skill-progress-bar' 
+                                                style={{ width: `${(seekerSkill.level / 100) * 100}%` }}
+                                            ></div>
+                                        </div>
                                     </div>
                                 )}
+
+                                {/* Stoic Level */}
                                 {stoicSkill && (
                                     <div className='mypage-stoic-level'>
-                                        <p>{stoicSkill.skill.name}: Lv {stoicSkill.level}</p>
+                                        <div className='flex skill-text'>
+                                            <p className='skill-name'>{stoicSkill.skill.name}</p>
+                                            <div className='levels-container'>
+                                                <p className='level-text'>Lv. </p>
+                                                <p className='skill-level'>{stoicSkill.level}</p>
+                                                <p className='skill-max'>/100</p>
+                                            </div>
+                                        </div>
+                                        <div className='skill-progress-container'>
+                                            <div 
+                                                className='skill-progress-bar' 
+                                                style={{ width: `${(stoicSkill.level / 100) * 100}%` }}
+                                            ></div>
+                                        </div>
                                     </div>
                                 )}
                             </div>
