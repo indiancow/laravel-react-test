@@ -10,7 +10,7 @@ const UserSelector = ({ users }) => {
 
     return (
         <div>
-        <h2>Other Users</h2>
+        <h2>他メンバーを見る</h2>
         <select onChange={handleUserChange}>
             <option value="">ユーザーを選択</option>
             {users.map((otherUser) => (
