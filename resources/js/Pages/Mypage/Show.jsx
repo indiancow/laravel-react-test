@@ -165,13 +165,14 @@ const Show = ({ user, users, issues, feedbacks, userSkills, character }) => {
                     <div>
                         <h2>あなたのこれまでの課題</h2>
                         {issues.map(issue => (
-                            <div key={issue.id} className="issue-card flex">
-                                <h3>{issue.tag.name}</h3>
-                                <div className='issue-details'>
-                                    <p>{issue.description}</p>
-                                    <p>{new Date(issue.created_at).toLocaleDateString()}</p>
+                            <div key={issue.id} className="issue-card">
+                                <div className='issue-title'>
+                                    <h3>{issue.tag.name}</h3>
                                 </div>
-                                
+                                <div className='issue-content'>
+                                    <p>{issue.description}</p>
+                                    {/* <p>{new Date(issue.created_at).toLocaleDateString()}</p> */}
+                                </div>
                             </div>
                         ))}
                     </div>
@@ -180,17 +181,22 @@ const Show = ({ user, users, issues, feedbacks, userSkills, character }) => {
                         <h2>あなたがもらったフィードバック</h2>
                         {feedbacks.map((feedback) => (
                             <div key={feedback.id} className="feedback-card">
-                                <h3>{feedback.issue.tag.name}</h3>
-                                <p>{feedback.content}</p>
-                                <p>
-                                    <InertiaLink href={`/mypage/${feedback.user_id}`}>
-                                        {users.find((u) => u.id === feedback.user_id).name}
-                                    </InertiaLink>
-                                </p>
-                                <p>{new Date(feedback.created_at).toLocaleDateString()}</p>
+                                <div className='feedback-title'>
+                                    <h3>{feedback.issue.tag.name}</h3>
+                                </div>
+                                <div className='feedback-content'>
+                                    <p className='feedback-text'>{feedback.content}</p>
+                                    <p className='feedbacked-by'>
+                                        <InertiaLink href={`/mypage/${feedback.user_id}`}>
+                                            {users.find((u) => u.id === feedback.user_id).name}
+                                        </InertiaLink>
+                                    </p>
+                                    {/* <p>{new Date(feedback.created_at).toLocaleDateString()}</p> */}
+                                </div>
                             </div>
                         ))}
                     </div>
+
                 </div>
             </div>
         </div>
