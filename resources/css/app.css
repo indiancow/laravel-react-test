@@ -706,7 +706,6 @@
 .mypage-username-card p{
     color: #FFF;
     font-family: Inter;
-    font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -751,7 +750,7 @@
     width: 50%;
     display: flex;
     justify-content: center;
-    font-size: 30px;
+    font-size: 24px;
     align-items: center;
     /* margin-left: 20px; */
 }
@@ -760,16 +759,12 @@
     width: 50%;
     display: flex;
     justify-content: center;
-}
-
-.level-text,
-.skill-max{
-    font-size: 16px;
+    text-align: center;
+    align-items: center;
 }
 
 .skill-level{
     font-weight: 900;
-    font-size: 32px;
 }
 
 .skill-progress-container{
@@ -828,6 +823,7 @@
     padding: 16px;
     width: 200px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    height: 30%;
 }
 
 .left-card {
@@ -838,6 +834,15 @@
 .right-card {
     border-radius: 15px;
     background: linear-gradient(102deg, #4B6AB8 1.31%, #4B6AB8 1.32%, #75B6DA 100.38%, #FF4C00 100.39%, #FF4C00 100.39%);
+}
+
+.sales-level-text{
+    width: 50%;
+    text-align: center;
+}
+
+.sales-level-text p{
+    font-size: 14px;
 }
 
 
@@ -853,7 +858,6 @@
 .skill-card p {
     color: #FFF;
     font-family: Inter;
-    font-size: 12px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -870,8 +874,11 @@
 }
 
 .level-component{
-    background: linear-gradient(144deg, #FBA541 11.79%, #FF8A00 95.92%);
-    border-radius: 50%;
+    text-decoration: underline;
+    text-decoration-color:#FBA541; /* アンダーラインの色 */
+    text-decoration-thickness: 4px; /* アンダーラインの太さ */
+    /* background: linear-gradient(144deg, #FBA541 11.79%, #FF8A00 95.92%);
+    border-radius: 60%; */
 }
 
 /* gymleader */
