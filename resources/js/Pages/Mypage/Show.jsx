@@ -130,24 +130,32 @@ const Show = ({ user, users, issues, feedbacks, userSkills, character }) => {
                         </div>
                     </div>
                     <div>
-                    <div className="card-container">
-                        {/* それ以外のスキルを表示 */}
-                        {userSkills.map((userSkill, index) => (
-                            userSkill.skill.name !== 'Giver' && userSkill.skill.name !== '探求者' && userSkill.skill.name !== 'ストイック' && (
-                                <div key={userSkill.id} className={`skill-card ${index % 2 === 0 ? 'left-card' : 'right-card'}`}>
-                                    <div className='flex'>
-                                        <div>
-                                            <h3 className='skill-card-name'>{userSkill.skill.name}</h3>
-                                            <p>{userSkill.skill.description}</p>
-                                        </div>
-                                        <div className='level-component'>
-                                            <p>レベル: Lv <span className='skill-card-level'>{userSkill.level}</span></p>
+                        <div className="card-container">
+                            {userSkills.map((userSkill, index) => (
+                                userSkill.skill.name !== 'Giver' && userSkill.skill.name !== '探求者' && userSkill.skill.name !== 'ストイック' && (
+                                    <div key={userSkill.id} className={`skill-card ${index % 2 === 0 ? 'left-card' : 'right-card'}`}>
+                                        <div className='flex'>
+                                            <div className='sales-level-text'>
+                                                <h3 className='skill-card-name'>{userSkill.skill.name}</h3>
+                                                <p>{userSkill.skill.description}</p>
+                                            </div>
+                                            <div className='levels-container'>
+                                                <p className='level-text'>Lv. </p>
+                                                <p className='skill-level'>{userSkill.level}</p>
+                                                <p className='skill-max'>/100</p>
+                                            </div>
+                                        
+                                            <div className='skill-progress-container'>
+                                                <div 
+                                                    className='skill-progress-bar' 
+                                                    style={{ width: `${(userSkill.level / 100) * 100}%` }}
+                                                ></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            )
-                        ))}
-                    </div>
+                                )
+                            ))}
+                        </div>
 
                     </div>
                 </div>
