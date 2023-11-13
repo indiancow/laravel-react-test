@@ -20,105 +20,27 @@ const CreateFeedback = ({ issue, onClose }) => {
     };
     
     return (
-        <div>
-            <p>依頼者: {issue.author}</p>
-            <h1>課題タグ: {issue.tag}</h1>
-            <p>課題: {issue.description}</p>
-            
-            <form onSubmit={handleSubmit} onClick={() => console.log('Form clicked')}>
-                <div>
-                    <label htmlFor="content">Feedback:</label>
-                    <textarea 
-                        id="content" 
-                        value={content} 
-                        onChange={(e) => setContent(e.target.value)} 
-                    />
+        <div className='feedback-container'>
+            <form onSubmit={handleSubmit} className='feedback-form'>
+                <div className='feedback-header'>
+                    <label htmlFor="content" className='feedback-label'>解決策の提案</label>
+                    <div className='feedback-info'>
+                        <p className='feedback-author'>依頼者: {issue.author}</p>
+                        <h1 className='feedback-tag'>{issue.tag}</h1>
+                        <p className='feedback-description'>{issue.description}</p>
+                    </div>
                 </div>
-                <button type="submit" onClick={() => console.log('Button clicked')}>Submit</button>
+                <textarea 
+                    id="content" 
+                    value={content} 
+                    onChange={(e) => setContent(e.target.value)} 
+                />
+                <button type="submit" className='feedback-button'>送信</button>
+                <button onClick={onClose} className='feedback-button close-button'>閉じる</button>
             </form>
         </div>
+
     );
 };
 
 export default CreateFeedback;
-
-
-// import React, { useState } from 'react';
-// import { Inertia } from '@inertiajs/inertia';
-
-// const CreateFeedback = ({ issue }) => {
-//     const [content, setContent] = useState('');
-
-//     const handleSubmit = async (e) => {  // この関数を非同期にします。
-//         console.log('handleSubmit is triggered');  // ログを追加
-//         e.preventDefault();
-//         try {
-//             // Inertia.post を await を使用して呼び出します。
-//             await Inertia.post('/feedbacks', { issue_id: issue.id, content: content });
-//             // 必要であれば、フォーム送信後の処理をここに追加します。
-//         } catch (error) {
-//             // エラーハンドリングをここで行います。
-//             console.error('An error occurred while submitting the form:', error);
-//         }
-//     };
-    
-//     return (
-//         <div>
-//             <p>依頼者: {issue.author}</p>
-//             <h1>課題タグ: {issue.tag}</h1>
-//             <p>課題: {issue.description}</p>
-            
-//             <form onSubmit={handleSubmit} onClick={() => console.log('Form clicked')}>
-//                 <div>
-//                     <label htmlFor="content">Feedback:</label>
-//                     <textarea 
-//                         id="content" 
-//                         value={content} 
-//                         onChange={(e) => setContent(e.target.value)} 
-//                     />
-//                 </div>
-//                 <button type="submit" onClick={() => console.log('Button clicked')}>Submit</button>
-//             </form>
-//         </div>
-//     );
-// };
-
-// export default CreateFeedback;
-
-
-
-// import React, { useState } from 'react';
-// import { Inertia } from '@inertiajs/inertia';
-
-// const CreateFeedback = ({ issue }) => {
-//     const [content, setContent] = useState('');
-
-//     const handleSubmit = (e) => {
-//         console.log('handle submit is called')
-//         e.preventDefault();
-//         Inertia.post('/feedbacks', { issue_id: issue.id, content: content });
-//     };
-//     // console.log(issue)
-    
-//     return (
-//         <div>
-//             <p>依頼者: {issue.author}</p>
-//             <h1>課題タグ: {issue.tag}</h1>
-//             <p>課題: {issue.description}</p>
-            
-//             <form onSubmit={handleSubmit}>
-//                 <div>
-//                     <label htmlFor="content">内容:</label>
-//                     <textarea 
-//                         id="content" 
-//                         value={content} 
-//                         onChange={(e) => setContent(e.target.value)} 
-//                     />
-//                 </div>
-//                 <button type="submit">Submit</button>
-//             </form>
-//         </div>
-//     );
-// };
-
-// export default CreateFeedback;

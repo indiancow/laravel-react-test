@@ -39,13 +39,17 @@
 }
 
 /* フォーム要素 */
-.issue-form {
+.issue-form,
+.feedback-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 15px;
 }
 
-.issue-form label {
+.issue-form label,
+.feedback-form label {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,7 +70,8 @@
     width: 100%;
 }
 
-.issue-form textarea{
+.issue-form textarea,
+.feedback-form textarea{
     margin-top: 8px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -75,8 +80,45 @@
     width: 350px;
 }
 
+.feedback-header {
+    font-size: 18px; /* 基本フォントサイズ */
+    margin-bottom: 20px; /* ヘッダーの下の余白 */
+}
+
+.feedback-label {
+    font-weight: bold; /* ラベルの文字を太くする */
+    font-size: 20px; /* ラベルのフォントサイズを大きくする */
+    margin-bottom: 10px; /* ラベルの下の余白 */
+}
+
+.feedback-info {
+    margin-left: 20px; /* 情報エリアに左の余白を追加 */
+}
+
+.feedback-author,
+.feedback-tag,
+.feedback-description {
+    font-weight: bold; /* テキストを太くする */
+    margin-bottom: 10px; /* 要素間の余白 */
+}
+
+.feedback-author{
+    color: #007bff;
+}
+
+.feedback-tag {
+    font-size: 22px; /* タグのフォントサイズを大きくする */
+    color: #007bff;
+}
+
+.feedback-description {
+    font-size: 20px; /* 課題の説明のフォントサイズを大きくする */
+}
+
+
 /* ボタン */
-.quest-modal button {
+.quest-modal button,
+.feedback-modal-button {
     cursor: pointer;
     /* padding: 10px 20px; */
     /* margin-top: 10px; */
@@ -573,7 +615,8 @@
 
 /* ボタンのスタイル */
 .timeline-button,
-.issue-button {
+.issue-button,
+.feedback-button {
     padding: 10px 15px;
     background: linear-gradient(180deg, #B023E9 0%, #8546D4 100%); /* 青色のボタン背景 */
     font-weight: 700;
@@ -583,6 +626,40 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
+
+.feedback-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* フォームの幅を調整 */
+    padding: 20px; /* 余白を追加 */
+}
+
+.feedback-header {
+    text-align: center;
+}
+
+.feedback-button {
+    margin-top: 10px;
+    width: auto;
+}
+
+.close-button {
+    margin-top: 20px; /* 「閉じる」ボタンの余白を調整 */
+    margin-bottom: 10px; /* ボタンの下の余白を追加 */
+    align-self: flex-start; /* ボタンを左揃えにする */
+}
+
+/* .close-button{
+    display: flex;
+    justify-content: left;
+} */
 
 .timeline-button:hover {
     background-color: #FF4C00; /* ホバー時の青色 */
