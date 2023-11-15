@@ -3,23 +3,32 @@ import Navbar from '@/Components/Navbar';
 import Modal from '@/Components/Modal';
 import CreateFeedback from '@/Components/CreateFeedback';
 
-
 const Index = ({ issues }) => {
-    console.log(issues.data)
-    const createFeedback = (issueId) => {
-        // Navigate to the feedback creation page
-        window.location.href = `/feedbacks/create/${issueId}`;
-    };
+    console.log(issues.data);
+
+    // モーダルの表示非表示を管理するためのstate
     const [showModal, setShowModal] = useState(false);
+
+    // モーダルを開閉するための関数
+    const openModal = () => {
+        setShowModal(true);
+    };
+
+    const closeModal = () => {
+        setShowModal(false);
+    };
+
     const [selectedIssue, setSelectedIssue] = useState(null);
-    
+
     const handleFeedbackClick = (issue) => {
         setSelectedIssue(issue);
         setShowModal(true);
     };
+
     const handleCloseModal = () => {
         setShowModal(false);
     };
+
     const defaultStorageUrl = "http://localhost/storage/";
     return (
         <div>
