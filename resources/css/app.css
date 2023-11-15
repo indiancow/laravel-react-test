@@ -698,12 +698,12 @@
 .issue-title, .feedback-title{
     color: #FFF;
     font-family: Inter;
-    font-size: 24px;
+    font-size: 22px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     margin-bottom: 10px;
-    width: 30%;
+    width: 35%;
     align-items: center;
     text-align: center;
 }
@@ -715,7 +715,7 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    width: 70%; 
+    width: 65%; 
     display: flex;
     text-align: center;
     align-items: center;
