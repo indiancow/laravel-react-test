@@ -656,6 +656,52 @@
     align-self: flex-start; /* ボタンを左揃えにする */
 }
 
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pagination {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #B023E9;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.page-link:hover {
+    background-color:white
+}
+
+.page-item.active .page-link {
+    color: #ffffff;
+    background: linear-gradient(180deg, #B023E9 0%, #8546D4 100%); /* 青色のボタン背景 */
+    border-color: #007bff;
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d;
+    background-color: #ffffff;
+    pointer-events: none;
+}
+
+
+
+
 /* .close-button{
     display: flex;
     justify-content: left;

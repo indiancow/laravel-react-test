@@ -24,7 +24,8 @@ class IssueController extends Controller
     {
         $issues = Issue::with(['user', 'tag'])
             ->paginate(10);
-
+        // Log::debug($issues);
+        // dd($issues);
         // 変換されたコレクションを取得し、それを$issuesオブジェクトに再セットします。
         $transformedIssues = $issues->getCollection()->transform(function ($issue) {
             return [
