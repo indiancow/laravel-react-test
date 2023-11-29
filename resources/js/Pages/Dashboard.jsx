@@ -98,27 +98,27 @@ export default function Dashboard({ auth, pendingRecords, tags, dailyMissions })
             onProgress: (event) => console.log(event.loaded / event.total),
         });
         // ステップ3: アップロードURLを取得
-        // await getUploadUrl();
+        await getUploadUrl();
 
-        // // ステップ4: S3に動画をアップロード
-        // if (uploadUrl) {
-        //     await handleUploadToS3(video);
-        //     console.log("Upload URL: ", uploadUrl);
+        // ステップ4: S3に動画をアップロード
+        if (uploadUrl) {
+            await handleUploadToS3(video);
+            console.log("Upload URL: ", uploadUrl);
 
-        //     // ステップ5: アプリケーションサーバーにメタデータをPOST
-        //     // FormDataインスタンスを作成
-        //     const formData = new FormData();
-        //     formData.append('description', description);
-        //     formData.append('tag_id', tagId);
-        //     formData.append('video_path', uploadUrl);  // S3のURLを送信
+            // ステップ5: アプリケーションサーバーにメタデータをPOST
+            // FormDataインスタンスを作成
+            const formData = new FormData();
+            formData.append('description', description);
+            formData.append('tag_id', tagId);
+            formData.append('video_path', uploadUrl);  // S3のURLを送信
 
-        //     // FormDataを使用してPOSTリクエストを送信
-        //     Inertia.post('/issues', formData, {
-        //         preserveState: true,
-        //         only: ['tags'],
-        //         onProgress: (event) => console.log(event.loaded / event.total),
-        //     });
-        // }
+            // FormDataを使用してPOSTリクエストを送信
+            Inertia.post('/issues', formData, {
+                preserveState: true,
+                only: ['tags'],
+                onProgress: (event) => console.log(event.loaded / event.total),
+            });
+        }
     };
 
     return (

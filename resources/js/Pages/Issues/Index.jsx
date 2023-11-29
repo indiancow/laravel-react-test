@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '@/Components/Navbar';
 import Modal from '@/Components/Modal';
 import CreateFeedback from '@/Components/CreateFeedback';
+import Pagination from '../../Components/Pagenation';
 
 const Index = ({ issues }) => {
     console.log(issues.data);
@@ -87,6 +88,7 @@ const Index = ({ issues }) => {
                         </div>
                     ))}
                 </div>
+                <Pagination issues={issues} />
 
             </div>
             {showModal && selectedIssue && (
